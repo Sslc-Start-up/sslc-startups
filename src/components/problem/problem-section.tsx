@@ -56,7 +56,7 @@ export function ProblemSection() {
               <p className="font-mono text-[11px] tracking-[0.2em] text-subtle uppercase">Today</p>
               <div className="relative mt-6 h-[230px]" aria-hidden>
                 <svg className="absolute inset-0 h-full w-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-                  <path d="M20 22 L58 16 M30 48 L64 46 M14 78 L50 80 M30 50 L20 74 M62 20 L66 44" stroke="rgb(255 255 255 / 0.12)" strokeDasharray="1.5 3" fill="none" vectorEffect="non-scaling-stroke" />
+                  <path d="M20 22 L58 16 M30 48 L64 46 M14 78 L50 80 M30 50 L20 74 M62 20 L66 44" stroke="var(--color-line-strong)" strokeDasharray="1.5 3" fill="none" vectorEffect="non-scaling-stroke" />
                 </svg>
                 {messy.map((m) => (
                   <span

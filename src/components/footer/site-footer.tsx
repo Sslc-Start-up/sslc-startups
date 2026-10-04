@@ -99,7 +99,7 @@ export function SiteFooter() {
 
         <p
           aria-hidden
-          className="pointer-events-none mt-20 text-center text-[clamp(2.5rem,0.25rem+9.5vw,10rem)] leading-[0.8] whitespace-nowrap font-semibold tracking-[-0.06em] text-transparent select-none [-webkit-text-stroke:1px_rgb(255_255_255/0.08)]"
+          className="pointer-events-none mt-20 text-center text-[clamp(2.5rem,0.25rem+9.5vw,10rem)] leading-[0.8] whitespace-nowrap font-semibold tracking-[-0.06em] text-transparent select-none [-webkit-text-stroke:1px_var(--outline-text)]"
         >
           SSLC STARTUP
         </p>

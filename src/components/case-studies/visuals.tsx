@@ -8,7 +8,7 @@ const float = "[transform:translateZ(40px)]";
 export function AgentBlueprintVisual() {
   const steps = ["Ticket received", "Intent: refund status", "Order lookup", "Policy check", "Reply drafted"];
   return (
-    <div className="relative h-56 [transform-style:preserve-3d]" aria-hidden>
+    <div className="force-dark relative h-56 [transform-style:preserve-3d]" aria-hidden>
       <div className="absolute inset-x-0 top-0 rounded-xl border border-line-strong bg-[#0b0a16]/90 p-4">
         <ul className="space-y-2">
           {steps.map((s, i) => {
@@ -39,7 +39,7 @@ export function AgentBlueprintVisual() {
 export function SaasBlueprintVisual() {
   const tenants = ["acme", "northwind", "globex"];
   return (
-    <div className="relative h-56 [transform-style:preserve-3d]" aria-hidden>
+    <div className="force-dark relative h-56 [transform-style:preserve-3d]" aria-hidden>
       <div className="absolute inset-x-0 top-0 rounded-xl border border-line-strong bg-[#0b0a16]/90 p-4">
         <div className="grid grid-cols-3 gap-2">
           {tenants.map((t) => (
@@ -68,7 +68,7 @@ export function SaasBlueprintVisual() {
 
 export function MobileBlueprintVisual() {
   return (
-    <div className="relative h-56 [transform-style:preserve-3d]" aria-hidden>
+    <div className="force-dark relative h-56 [transform-style:preserve-3d]" aria-hidden>
       <div className="absolute top-0 left-0 w-[62%] rounded-xl border border-line-strong bg-[#0b0a16]/90 p-3">
         <p className="text-[10px] text-subtle">Live dashboard</p>
         <div className="mt-2 flex h-24 items-end gap-1">

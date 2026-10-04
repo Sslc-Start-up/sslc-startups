@@ -14,6 +14,7 @@ import { CtaSection } from "@/components/cta/cta-section";
 import { ContactSection } from "@/components/contact/contact-section";
 import { SiteFooter } from "@/components/footer/site-footer";
 import { ProjectAssistant } from "@/components/assistant/project-assistant";
+import { WhatsAppButton } from "@/components/assistant/whatsapp-button";
 
 export default function HomePage() {
   return (
@@ -36,6 +37,7 @@ export default function HomePage() {
       </main>
       <SiteFooter />
       <ProjectAssistant />
+      <WhatsAppButton />
     </>
   );
 }

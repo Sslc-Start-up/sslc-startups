@@ -4,7 +4,7 @@ import { AnimatePresence, m } from "framer-motion";
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { budgets, company, projectTypes, timelines, type ProjectType } from "@/content/site";
 import { inquiryMailto, submitProjectInquiry, type ProjectInquiry } from "@/lib/inquiry";
-import { PREFILL_EVENT } from "@/lib/prefill";
+import { PREFILL_EVENT, type PrefillDetail } from "@/lib/prefill";
 import { cn } from "@/lib/utils";
 import { Button, CtaArrow, buttonClass } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Check, Mail } from "@/components/ui/icons";
@@ -26,11 +26,12 @@ export function InquiryForm() {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const mounted = useRef(false);
 
-  // CTAs across the page can pre-select a project type.
+  // CTAs across the page can pre-select a project type; the hero can pass an email.
   useEffect(() => {
     const onPrefill = (e: Event) => {
-      const type = (e as CustomEvent<ProjectType | undefined>).detail;
+      const { type, email } = (e as CustomEvent<PrefillDetail>).detail ?? {};
       if (status === "success" || status === "fallback") return;
+      if (email) setData((d) => ({ ...d, email }));
       if (type) {
         setData((d) => ({ ...d, projectType: type }));
         setErrors({});

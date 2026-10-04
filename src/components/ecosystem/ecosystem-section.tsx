@@ -5,7 +5,7 @@ const bars = [38, 52, 46, 64, 58, 72, 66, 84, 78, 92, 86, 96];
 
 function Desktop() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-line-strong bg-[#0b0d11] shadow-[var(--shadow-float)]">
+    <div className="force-dark overflow-hidden rounded-2xl border border-line-strong bg-[#0b0d11] shadow-[var(--shadow-float)]">
       <div className="flex items-center gap-1.5 border-b border-line px-4 py-3">
         <span className="size-2.5 rounded-full bg-white/12" />
         <span className="size-2.5 rounded-full bg-white/12" />
@@ -65,7 +65,7 @@ function Desktop() {
 
 function PhoneMock() {
   return (
-    <div className="w-[170px] rounded-[30px] border border-line-strong bg-[#08090c] p-2 shadow-[var(--shadow-float)] sm:w-[200px]">
+    <div className="force-dark w-[170px] rounded-[30px] border border-line-strong bg-[#08090c] p-2 shadow-[var(--shadow-float)] sm:w-[200px]">
       <div className="rounded-[24px] bg-[#0e1116] px-3 pt-3 pb-4">
         <div className="mx-auto h-1 w-10 rounded-full bg-white/10" />
         <p className="mt-4 text-[13px] font-medium text-fg">Good morning</p>
@@ -89,7 +89,7 @@ function PhoneMock() {
 
 function ApiCard() {
   return (
-    <div className="w-[250px] rounded-xl border border-line-strong bg-[#08090c]/95 p-4 font-mono text-[10.5px] leading-relaxed shadow-[var(--shadow-float)] backdrop-blur sm:w-[290px]">
+    <div className="force-dark w-[250px] rounded-xl border border-line-strong bg-[#08090c]/95 p-4 font-mono text-[10.5px] leading-relaxed shadow-[var(--shadow-float)] backdrop-blur sm:w-[290px]">
       <p className="text-subtle">
         <span className="text-cyan">GET</span> /api/v1/orders?status=open
       </p>

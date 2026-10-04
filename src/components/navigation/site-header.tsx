@@ -8,6 +8,7 @@ import { CtaArrow } from "@/components/ui/button";
 import { ArrowRight, Mail, WhatsApp } from "@/components/ui/icons";
 import { InquiryLink } from "@/components/ui/inquiry-link";
 import { Logo } from "@/components/ui/logo";
+import { ThemeToggle } from "./theme-toggle";
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -54,16 +55,28 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 transition-[padding] duration-500 ease-[var(--ease-out-expo)]",
+        scrolled && !open && "lg:pt-3",
+      )}
+    >
+      {/* Full-width bar at the top; detaches into a floating pill on scroll (desktop). */}
       <div
         className={cn(
-          "border-b transition-[background-color,border-color,backdrop-filter] duration-500 ease-[var(--ease-out-expo)]",
+          "mx-auto border-b transition-all duration-500 ease-[var(--ease-out-expo)] lg:max-w-[1280px]",
           scrolled || open
-            ? "border-line bg-bg/70 backdrop-blur-xl backdrop-saturate-150"
+            ? "border-line bg-bg/75 backdrop-blur-xl backdrop-saturate-150"
             : "border-transparent bg-transparent",
+          scrolled && !open && "lg:max-w-[1200px] lg:rounded-2xl lg:border lg:shadow-[var(--shadow-float)]",
         )}
       >
-        <div className="container-x flex h-16 items-center justify-between lg:h-[72px]">
+        <div
+          className={cn(
+            "flex h-16 items-center justify-between px-5 transition-all duration-500 sm:px-8",
+            scrolled && !open ? "lg:h-[60px] lg:px-5" : "lg:h-[72px] lg:px-12",
+          )}
+        >
           <Logo onClick={close} />
 
           <nav aria-label="Primary" className="hidden md:block">
@@ -82,6 +95,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             <InquiryLink variant="primary" size="md" className="hidden sm:inline-flex">
               Start a Project
               <CtaArrow>
@@ -96,7 +110,7 @@ export function SiteHeader() {
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? "Close menu" : "Open menu"}
-              className="relative grid size-10 place-items-center rounded-[10px] border border-line-strong bg-white/[0.03] md:hidden"
+              className="relative grid size-10 place-items-center rounded-[10px] border border-line-strong bg-surface/60 md:hidden"
             >
               <span
                 className={cn(

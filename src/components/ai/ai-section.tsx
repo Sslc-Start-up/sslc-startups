@@ -25,7 +25,7 @@ function AgentDiagram() {
         <Connector />
 
         {/* Agent */}
-        <div className="mx-auto max-w-sm rounded-2xl border border-accent/40 bg-[linear-gradient(180deg,#1a1438,#0b0e15)] p-5 text-center shadow-[var(--shadow-accent)]">
+        <div className="force-dark mx-auto max-w-sm rounded-2xl border border-accent/40 bg-[linear-gradient(180deg,#1a1438,#0b0e15)] p-5 text-center shadow-[var(--shadow-accent)]">
           <p className="font-mono text-[10px] tracking-[0.2em] text-accent uppercase">AI agent</p>
           <p className="mt-2 text-[15px] font-medium text-fg">Understand → Plan → Decide</p>
           <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">

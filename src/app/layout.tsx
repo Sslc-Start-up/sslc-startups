@@ -31,8 +31,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#050506",
-  colorScheme: "dark",
+  themeColor: "#04040a",
+  colorScheme: "dark light",
 };
 
 const jsonLd = {
@@ -56,9 +56,15 @@ const jsonLd = {
   sameAs: company.social.map((s) => s.href).filter(Boolean),
 };
 
+const themeScript = `try{var t=localStorage.getItem("sslc-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;}catch(e){}`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
+    <html lang="en" data-theme="dark" className={`${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Apply the saved theme before first paint (no flash). */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         <a
           href="#main"

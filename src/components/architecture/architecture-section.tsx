@@ -70,10 +70,10 @@ export function ArchitectureSection() {
                     className="absolute inset-0 rounded-2xl border transition-[transform,background,border-color,box-shadow] duration-700 ease-[var(--ease-out-expo)]"
                     style={{
                       transform: `translateZ(${z}px)`,
-                      borderColor: isActive ? color : "rgb(255 255 255 / 0.12)",
+                      borderColor: isActive ? color : "var(--layer-idle-border)",
                       background: isActive
                         ? `linear-gradient(135deg, ${color}55, ${color}18)`
-                        : "linear-gradient(135deg, rgb(255 255 255 / 0.06), rgb(255 255 255 / 0.015))",
+                        : "var(--layer-idle)",
                       boxShadow: isActive ? `0 0 60px -6px ${color}aa, inset 0 0 30px -10px ${color}` : "none",
                     }}
                   >
@@ -81,7 +81,7 @@ export function ArchitectureSection() {
                     <span
                       className={cn(
                         "absolute bottom-3 left-4 font-mono text-[11px] tracking-[0.14em] uppercase transition-colors duration-500",
-                        isActive ? "text-white" : "text-white/35",
+                        isActive ? "text-fg" : "text-fg/40",
                       )}
                     >
                       L{i + 1} · {layer.name}

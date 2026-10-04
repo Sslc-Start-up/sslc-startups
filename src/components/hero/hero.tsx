@@ -1,11 +1,6 @@
-import { CtaArrow, buttonClass } from "@/components/ui/button";
-import { ArrowRight } from "@/components/ui/icons";
-import { InquiryLink } from "@/components/ui/inquiry-link";
-import { Magnetic } from "@/components/ui/magnetic";
+import { HeroContact } from "./hero-contact";
 import { HeroScene } from "./hero-scene";
 import { Tagline } from "./tagline";
-
-const capabilities = ["AI", "SaaS", "Mobile", "Web", "Cloud", "Automation"];
 
 /**
  * Text entrance is pure CSS (transform-only on the headline) so it paints
@@ -50,31 +45,9 @@ export function Hero() {
               infrastructure — we design, engineer and launch software built for real-world growth.
             </p>
 
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Magnetic>
-                <InquiryLink variant="primary" size="lg" className="w-full sm:w-auto">
-                  Start a Project
-                  <CtaArrow>
-                    <ArrowRight size={16} />
-                  </CtaArrow>
-                </InquiryLink>
-              </Magnetic>
-              <a href="#work" className={buttonClass("secondary", "lg")}>
-                Explore Our Work
-              </a>
+            <div className="mt-9">
+              <HeroContact />
             </div>
-
-            <ul
-              aria-label="Capabilities"
-              className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs tracking-[0.12em] text-subtle uppercase"
-            >
-              {capabilities.map((c, i) => (
-                <li key={c} className="flex items-center gap-3">
-                  {i > 0 ? <span aria-hidden className="size-1 rounded-full bg-violet/70" /> : null}
-                  {c}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </div>

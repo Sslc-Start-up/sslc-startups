@@ -316,6 +316,9 @@ export function HeroScene() {
       };
       window.addEventListener("pointermove", onPointer, { passive: true });
 
+      // ── Theme (follows <html data-theme>) ───────────────────────────
+      let light = false;
+
       // ── Loop ────────────────────────────────────────────────────────
       const clock = new THREE.Clock();
       let raf = 0;
@@ -340,7 +343,7 @@ export function HeroScene() {
         halo.position.x = stageOffset;
         rings.position.x = stageOffset;
 
-        halo.material.opacity = 0.8 + Math.sin(t * 1.2) * 0.2;
+        halo.material.opacity = (0.8 + Math.sin(t * 1.2) * 0.2) * (light ? 0.45 : 1);
         for (const r of ringMeshes) r.mesh.rotation.z += r.speed * dt * 2;
         rings.rotation.y = smooth.x * 0.2;
         particles.rotation.y = t * 0.03 + smooth.x * 0.1;
@@ -349,7 +352,8 @@ export function HeroScene() {
         lightA.position.set(Math.cos(t * 0.7) * 4, 2.2, Math.sin(t * 0.7) * 4 + 2);
         lightB.position.set(Math.cos(t * 0.7 + Math.PI) * 4, -2.2, Math.sin(t * 0.7 + Math.PI) * 4 + 2);
 
-        if (composer) composer.render();
+        // Additive bloom vanishes on a light page — render direct in light mode.
+        if (composer && !light) composer.render();
         else renderer.render(scene, camera);
       };
 
@@ -366,6 +370,28 @@ export function HeroScene() {
       });
       io.observe(host);
 
+      const applyTheme = () => {
+        light = document.documentElement.dataset.theme === "light";
+        renderer.setClearColor(light ? 0xf7f7fc : 0x04040a, 1);
+        const blend = light ? THREE.NormalBlending : THREE.AdditiveBlending;
+        const pm = particles.material as THREE.PointsMaterial;
+        pm.blending = blend;
+        pm.opacity = light ? 0.6 : 0.85;
+        pm.needsUpdate = true;
+        for (const r of ringMeshes) {
+          const mm = r.mesh.material as THREE.MeshBasicMaterial;
+          mm.blending = blend;
+          mm.opacity = light ? 0.5 : 0.35;
+          mm.needsUpdate = true;
+        }
+        halo.material.blending = blend;
+        halo.material.needsUpdate = true;
+        if (reduceMotion) renderFrame(2, 0.016);
+      };
+      applyTheme();
+      const themeObserver = new MutationObserver(applyTheme);
+      themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
       if (reduceMotion) renderFrame(2, 0.016);
       else tick();
       requestAnimationFrame(() => !disposed && setReady(true));
@@ -373,6 +399,7 @@ export function HeroScene() {
       cleanup = () => {
         cancelAnimationFrame(raf);
         io.disconnect();
+        themeObserver.disconnect();
         ro.disconnect();
         window.removeEventListener("pointermove", onPointer);
         scene.traverse((o) => {
@@ -411,7 +438,7 @@ export function HeroScene() {
       timer = setTimeout(() => {
         if ("requestIdleCallback" in window) idleHandle = window.requestIdleCallback(start, { timeout: 3000 });
         else start();
-      }, 2500);
+      }, 4500);
     };
     if (document.readyState === "complete") scheduleIdle();
     else window.addEventListener("load", scheduleIdle, { once: true });
