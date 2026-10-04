@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SSLC Startup — marketing website
 
-## Getting Started
-
-First, run the development server:
+Next.js 16 (App Router) · React 19 · Tailwind CSS v4 · Framer Motion (LazyMotion).
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run lint
+npm run typecheck
+npm run build && npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  app/                 layout (metadata, JSON-LD), page, sitemap, robots, icons, OG image
+    api/inquiry/       POST endpoint for the project-inquiry form
+  content/site.ts      ALL copy and data — services, case studies, process, contact details
+  lib/                 inquiry submission, prefill signal, site URL, cn()
+  components/
+    navigation/        sticky glass header + fullscreen mobile menu
+    hero/              hero, 3D WebGL logo scene (three.js), tagline, trust strip
+    problem/ services/ statement/ architecture/ case-studies/ ai/
+    ecosystem/ process/ why/ cta/ contact/ footer/
+    assistant/         "Talk to SSLC" — frontend-only project assistant (no fake AI)
+    ui/                buttons, reveal, section heading, logo, icons, spotlight, magnetic
+brand/                 original logo source file
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Design tokens (colours, type scale, motion, textures) live in `src/app/globals.css` under `@theme`.
 
-## Learn More
+## Configuration
 
-To learn more about Next.js, take a look at the following resources:
+Copy `.env.example` to `.env.local` (or set in your host):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Production origin, used for canonical URLs, sitemap, Open Graph and JSON-LD. Auto-detected on Vercel. |
+| `INQUIRY_WEBHOOK_URL` | Where project inquiries are delivered (JSON POST). Works with Formspree, Zapier, Make, n8n, Slack webhooks or your CRM. |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Project inquiries
 
-## Deploy on Vercel
+`submitProjectInquiry()` (`src/lib/inquiry.ts`) posts to `/api/inquiry`, which validates the
+brief and forwards it to `INQUIRY_WEBHOOK_URL`. **Until that variable is set, nothing is
+delivered server-side** — the visitor instead gets a pre-written email to
+`sslcstartup@gmail.com` containing their full brief, so no lead is lost.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Content still to supply
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Everything below is wired to render automatically once filled in `src/content/site.ts`:
+
+- **Real client projects** — add `caseStudies` entries with `kind: "project"` (only verified facts and metrics).
+- **Real product screenshots** — the solution-card visuals are illustrative CSS mock-ups (`components/case-studies/visuals.tsx`).
+- **Social profiles** — `company.social[].href` (LinkedIn, Instagram, GitHub are hidden while empty).
+
+The three "Solution blueprint" cards describe how SSLC builds each class of system; they are not client work.
+
+## 3D hero
+
+`components/hero/hero-scene.tsx` rebuilds the SSLC mark in three.js (extruded ribbons, bloom, particles,
+orbit rings). three.js loads only after the page is idle on desktop, or on the first touch/scroll on
+phones; a static mark is shown until then and for browsers without WebGL. Reduced-motion users get a
+still frame.
