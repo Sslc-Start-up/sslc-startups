@@ -44,7 +44,7 @@ Copy `.env.example` to `.env.local` (or set in your host):
 `submitProjectInquiry()` (`src/lib/inquiry.ts`) posts to `/api/inquiry`, which validates the
 brief and forwards it to `INQUIRY_WEBHOOK_URL`. **Until that variable is set, nothing is
 delivered server-side** — the visitor instead gets a pre-written email to
-`sslcstartup@gmail.com` containing their full brief, so no lead is lost.
+`business@sslctstartup.com` containing their full brief, so no lead is lost.
 
 ## Content still to supply
 

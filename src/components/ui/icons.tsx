@@ -54,6 +54,12 @@ export const MessageSquare = (p: IconProps) => (
     <path d="M20 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2Z" />
   </svg>
 );
+export const WhatsApp = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M4 20l1.2-3.6A8 8 0 1 1 8 19.1L4 20Z" />
+    <path d="M9.2 8.6c.2-.5.5-.6.8-.6h.5c.2 0 .4.1.5.4l.6 1.5c.1.2 0 .5-.1.6l-.5.6c.6 1.2 1.6 2.1 2.8 2.7l.6-.6c.2-.2.4-.2.6-.1l1.5.7c.2.1.3.3.3.5v.5c0 .4-.2.7-.6.9-.6.3-1.4.4-2.3 0a8.6 8.6 0 0 1-4.6-4.6c-.3-.9-.3-1.7.1-2.3Z" />
+  </svg>
+);
 export const Close = (p: IconProps) => (
   <svg {...base(p)}>
     <path d="M6 6l12 12M18 6 6 18" />

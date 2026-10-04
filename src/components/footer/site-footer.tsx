@@ -82,8 +82,8 @@ export function SiteFooter() {
                 </a>
               </li>
               <li>
-                <a href={company.phoneHref} className={linkClass}>
-                  {company.phone}
+                <a href={company.whatsappHref} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                  WhatsApp · {company.phone}
                 </a>
               </li>
               {social.map((s) => (

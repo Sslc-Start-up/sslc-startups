@@ -1,6 +1,6 @@
 import { company } from "@/content/site";
 import { Reveal } from "@/components/ui/reveal";
-import { Mail, Phone } from "@/components/ui/icons";
+import { Mail, WhatsApp } from "@/components/ui/icons";
 import { InquiryForm } from "./inquiry-form";
 
 const nextSteps = [
@@ -44,8 +44,8 @@ export function ContactSection() {
             <a href={`mailto:${company.email}`} className="inline-flex items-center gap-3 text-fg transition-colors hover:text-accent">
               <Mail size={16} className="text-muted" /> {company.email}
             </a>
-            <a href={company.phoneHref} className="inline-flex items-center gap-3 text-fg transition-colors hover:text-accent">
-              <Phone size={16} className="text-muted" /> {company.phone}
+            <a href={company.whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 text-fg transition-colors hover:text-accent">
+              <WhatsApp size={16} className="text-muted" /> WhatsApp · {company.phone}
             </a>
           </div>
         </Reveal>

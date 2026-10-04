@@ -11,9 +11,10 @@ export const company = {
   name: "SSLC Startup",
   wordmark: "SSLC STARTUP",
   tagline: "Software product engineering",
-  email: "sslcstartup@gmail.com",
+  email: "business@sslctstartup.com",
   phone: "+91 79832 35870",
   phoneHref: "tel:+917983235870",
+  whatsappHref: "https://wa.me/917983235870",
   footerLine: ["Build better software.", "Build better businesses."],
   /** Add real profile URLs here; empty entries are not rendered. */
   social: [

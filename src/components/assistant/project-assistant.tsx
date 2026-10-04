@@ -4,7 +4,7 @@ import { AnimatePresence, m } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { company, projectTypes, type ProjectType } from "@/content/site";
 import { startInquiry } from "@/lib/prefill";
-import { Close, Mail, MessageSquare, Phone } from "@/components/ui/icons";
+import { Close, Mail, MessageSquare, WhatsApp } from "@/components/ui/icons";
 
 /**
  * "Talk to SSLC" — a frontend-only project assistant.
@@ -110,8 +110,8 @@ export function ProjectAssistant() {
               <a href={`mailto:${company.email}`} className="inline-flex items-center gap-2.5 text-muted hover:text-fg">
                 <Mail size={14} /> {company.email}
               </a>
-              <a href={company.phoneHref} className="inline-flex items-center gap-2.5 text-muted hover:text-fg">
-                <Phone size={14} /> {company.phone}
+              <a href={company.whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 text-muted hover:text-fg">
+                <WhatsApp size={14} /> WhatsApp · {company.phone}
               </a>
             </div>
             <p className="mt-3 text-[11.5px] text-subtle">Every reply comes from our team — not a bot.</p>

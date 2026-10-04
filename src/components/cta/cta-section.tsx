@@ -4,7 +4,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { InquiryLink } from "@/components/ui/inquiry-link";
 import { Magnetic } from "@/components/ui/magnetic";
 import { CtaArrow, buttonClass } from "@/components/ui/button";
-import { ArrowRight } from "@/components/ui/icons";
+import { ArrowRight, WhatsApp } from "@/components/ui/icons";
 
 export function CtaSection() {
   return (
@@ -46,8 +46,8 @@ export function CtaSection() {
               </CtaArrow>
             </InquiryLink>
           </Magnetic>
-          <a href={`mailto:${company.email}`} className={buttonClass("secondary", "lg")}>
-            Talk To Our Team
+          <a href={company.whatsappHref} target="_blank" rel="noopener noreferrer" className={buttonClass("secondary", "lg")}>
+            <WhatsApp size={17} /> Talk To Our Team
           </a>
         </div>
       </Reveal>

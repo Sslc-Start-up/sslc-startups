@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { company, nav } from "@/content/site";
 import { cn } from "@/lib/utils";
 import { CtaArrow } from "@/components/ui/button";
-import { ArrowRight, Mail, Phone } from "@/components/ui/icons";
+import { ArrowRight, Mail, WhatsApp } from "@/components/ui/icons";
 import { InquiryLink } from "@/components/ui/inquiry-link";
 import { Logo } from "@/components/ui/logo";
 
@@ -158,8 +158,8 @@ export function SiteHeader() {
                   <a href={`mailto:${company.email}`} className="inline-flex items-center gap-2.5 hover:text-fg">
                     <Mail size={15} /> {company.email}
                   </a>
-                  <a href={company.phoneHref} className="inline-flex items-center gap-2.5 hover:text-fg">
-                    <Phone size={15} /> {company.phone}
+                  <a href={company.whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 hover:text-fg">
+                    <WhatsApp size={15} /> WhatsApp · {company.phone}
                   </a>
                 </div>
               </m.div>
