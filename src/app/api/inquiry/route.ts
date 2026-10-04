@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { projectTypes } from "@/content/site";
+import { siteUrl } from "@/lib/site-url";
 
 /**
  * POST /api/inquiry
@@ -59,10 +60,30 @@ export async function POST(request: Request) {
   try {
     const res = await fetch(webhook, {
       method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({ ...inquiry, source: "sslc-website", receivedAt: new Date().toISOString() }),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        // Some form relays (e.g. FormSubmit) require an origin/referer.
+        Origin: siteUrl,
+        Referer: `${siteUrl}/`,
+      },
+      body: JSON.stringify({
+        ...inquiry,
+        // FormSubmit options (ignored by other webhooks)
+        _subject: `New project inquiry: ${inquiry.projectType}${inquiry.company ? ` — ${inquiry.company}` : ""}`,
+        _replyto: inquiry.email,
+        _template: "table",
+        _captcha: "false",
+        source: "sslc-website",
+        receivedAt: new Date().toISOString(),
+      }),
     });
     if (!res.ok) throw new Error(`Webhook responded ${res.status}`);
+    // Relays like FormSubmit answer 200 with { success: "false" } on failure.
+    const data = (await res.json().catch(() => null)) as { success?: string | boolean; message?: string } | null;
+    if (data && (data.success === false || data.success === "false")) {
+      throw new Error(`Webhook rejected: ${data.message ?? "unknown"}`);
+    }
     return NextResponse.json({ delivered: true });
   } catch (error) {
     console.error("[inquiry] delivery failed", error);
