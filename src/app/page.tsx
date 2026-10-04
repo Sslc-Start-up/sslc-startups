@@ -1,15 +1,13 @@
 import { SiteHeader } from "@/components/navigation/site-header";
 import { Hero } from "@/components/hero/hero";
 import { TrustStrip } from "@/components/hero/trust-strip";
-import { ProblemSection } from "@/components/problem/problem-section";
-import { ServicesSection } from "@/components/services/services-section";
-import { StatementSection } from "@/components/statement/statement-section";
-import { ArchitectureSection } from "@/components/architecture/architecture-section";
+import { ServicesGrid } from "@/components/services/services-grid";
 import { WorkSection } from "@/components/case-studies/work-section";
 import { AiSection } from "@/components/ai/ai-section";
-import { EcosystemSection } from "@/components/ecosystem/ecosystem-section";
+import { ArchitectureSection } from "@/components/architecture/architecture-section";
 import { ProcessSection } from "@/components/process/process-section";
 import { WhySection } from "@/components/why/why-section";
+import { EngagementSection } from "@/components/engagement/engagement-section";
 import { CtaSection } from "@/components/cta/cta-section";
 import { ContactSection } from "@/components/contact/contact-section";
 import { SiteFooter } from "@/components/footer/site-footer";
@@ -23,15 +21,13 @@ export default function HomePage() {
       <main id="main">
         <Hero />
         <TrustStrip />
-        <ProblemSection />
-        <ServicesSection />
-        <StatementSection />
-        <ArchitectureSection />
+        <ServicesGrid />
         <WorkSection />
         <AiSection />
-        <EcosystemSection />
+        <ArchitectureSection />
         <ProcessSection />
         <WhySection />
+        <EngagementSection />
         <CtaSection />
         <ContactSection />
       </main>

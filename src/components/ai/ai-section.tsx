@@ -71,17 +71,17 @@ function Connector() {
 
 export function AiSection() {
   return (
-    <section id="solutions" aria-labelledby="ai-title" className="section overflow-hidden border-t border-line">
+    <section id="solutions" aria-labelledby="ai-title" className="section overflow-hidden bg-bg-1">
       <div aria-hidden className="pointer-events-none absolute inset-0 grid-texture fade-mask-radial opacity-50" />
       <div className="container-x relative">
         <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
           <Reveal>
-            <p className="eyebrow">
-              <span className="slash" aria-hidden />
-              <span className="text-subtle">06</span> AI solutions
-            </p>
+            <span className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-surface/70 px-3.5 py-1.5 text-[13px] font-medium text-fg/80 shadow-[var(--shadow-card)]">
+              <span className="slash !h-2 !w-2.5" aria-hidden />
+              AI solutions
+            </span>
             <h2 id="ai-title" className="mt-6 text-headline font-semibold text-sheen">
-              What if your software could think, decide &amp; act?
+              What if your software could <span className="text-brand">think, decide &amp; act?</span>
             </h2>
             <p className="mt-6 max-w-xl text-lede text-muted">
               We build AI agents that work inside your real systems — reading your data, following your rules and asking a
@@ -102,17 +102,26 @@ export function AiSection() {
           </Reveal>
         </div>
 
-        <ul className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:mt-24 lg:grid-cols-3">
+        <ol className="mt-16 border-t border-line lg:mt-24">
           {aiUseCases.map((u, i) => (
-            <RevealItem key={u.title} delay={(i % 3) * 0.06} className="group bg-bg p-6 transition-colors duration-500 hover:bg-surface lg:p-8">
-              <p className="font-mono text-[11px] text-subtle transition-colors group-hover:text-accent">
-                AI / {String(i + 1).padStart(2, "0")}
-              </p>
-              <h3 className="mt-5 text-[17px] font-medium tracking-[-0.01em] text-fg">{u.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{u.detail}</p>
+            <RevealItem key={u.title} delay={(i % 3) * 0.05} className="border-b border-line">
+              <InquiryLink
+                type="AI Product"
+                unstyled
+                className="group grid grid-cols-[40px_1fr_auto] items-center gap-4 py-6 transition-colors duration-500 hover:bg-surface/60 sm:grid-cols-[64px_minmax(0,0.9fr)_minmax(0,1.1fr)_auto] sm:gap-8 sm:px-2 lg:py-7"
+              >
+                <span className="font-mono text-[12px] text-subtle">{String(i + 1).padStart(2, "0")}</span>
+                <span className="text-[clamp(1.2rem,0.9rem+1vw,1.75rem)] font-medium tracking-[-0.02em] text-fg transition-colors duration-300 group-hover:text-accent">
+                  {u.title}
+                </span>
+                <span className="hidden text-[15px] leading-relaxed text-muted sm:block">{u.detail}</span>
+                <span className="grid size-10 place-items-center rounded-full border border-line-strong text-fg transition-all duration-500 group-hover:border-transparent group-hover:bg-accent group-hover:text-white sm:size-11">
+                  <ArrowRight size={16} className="transition-transform duration-500 group-hover:-rotate-45" />
+                </span>
+              </InquiryLink>
             </RevealItem>
           ))}
-        </ul>
+        </ol>
       </div>
     </section>
   );

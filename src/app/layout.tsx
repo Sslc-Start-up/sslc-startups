@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#04040a",
+  themeColor: "#f7f7fc",
   colorScheme: "dark light",
 };
 
@@ -60,7 +60,7 @@ const themeScript = `try{var t=localStorage.getItem("sslc-theme");if(t==="light"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-theme="dark" className={`${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme="light" className={`${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <head>
         {/* Apply the saved theme before first paint (no flash). */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

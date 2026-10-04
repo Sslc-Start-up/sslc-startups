@@ -61,11 +61,12 @@ export function WorkSection() {
         <div className="aurora [animation-duration:32s]" />
       </div>
       <div className="container-x relative">
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex flex-col items-center gap-8 text-center">
           <SectionHeading
             id="work-title"
             index="05"
             label="What we build"
+            align="center"
             title={
               <>
                 We build real systems. <br className="hidden md:block" />

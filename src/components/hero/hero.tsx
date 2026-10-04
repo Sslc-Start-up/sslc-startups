@@ -23,9 +23,9 @@ export function Hero() {
 
       <div className="container-x relative flex flex-1 flex-col justify-end pt-[calc(48svh+3.5rem)] pb-16 sm:pt-[calc(54svh+3rem)] lg:justify-center lg:pt-32 lg:pb-28">
         <div className="max-w-[46rem]">
-          <p className="eyebrow animate-rise">
-            <span className="slash" aria-hidden />
-            Software Product Engineering
+          <p className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-surface/70 px-3.5 py-1.5 text-[13px] font-medium text-fg/80 shadow-[var(--shadow-card)] backdrop-blur-sm animate-rise">
+            <span className="slash !h-2 !w-2.5" aria-hidden />
+            Software Product Engineering · AI · SaaS · Mobile
           </p>
 
           <h1

@@ -60,6 +60,77 @@ export const WhatsApp = (p: IconProps) => (
     <path d="M9.2 8.6c.2-.5.5-.6.8-.6h.5c.2 0 .4.1.5.4l.6 1.5c.1.2 0 .5-.1.6l-.5.6c.6 1.2 1.6 2.1 2.8 2.7l.6-.6c.2-.2.4-.2.6-.1l1.5.7c.2.1.3.3.3.5v.5c0 .4-.2.7-.6.9-.6.3-1.4.4-2.3 0a8.6 8.6 0 0 1-4.6-4.6c-.3-.9-.3-1.7.1-2.3Z" />
   </svg>
 );
+/* Service icons */
+export const Sparkles = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8L12 3Z" />
+    <path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z" />
+  </svg>
+);
+export const Layers = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="m12 3 9 5-9 5-9-5 9-5Z" />
+    <path d="m3 13 9 5 9-5" />
+  </svg>
+);
+export const Browser = (p: IconProps) => (
+  <svg {...base(p)}>
+    <rect x="3" y="4" width="18" height="16" rx="2.5" />
+    <path d="M3 9h18M7 6.5h.01M10 6.5h.01" />
+  </svg>
+);
+export const Smartphone = (p: IconProps) => (
+  <svg {...base(p)}>
+    <rect x="6" y="2.5" width="12" height="19" rx="2.5" />
+    <path d="M10.5 18.5h3" />
+  </svg>
+);
+export const Puzzle = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M10 4a2 2 0 1 1 4 0v1h3a1 1 0 0 1 1 1v3h1a2 2 0 1 1 0 4h-1v3a1 1 0 0 1-1 1h-3v-1a2 2 0 1 0-4 0v1H7a1 1 0 0 1-1-1v-3h1a2 2 0 1 0 0-4H6V6a1 1 0 0 1 1-1h3V4Z" />
+  </svg>
+);
+export const Chart = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />
+  </svg>
+);
+export const Server = (p: IconProps) => (
+  <svg {...base(p)}>
+    <rect x="3" y="4" width="18" height="7" rx="2" />
+    <rect x="3" y="13" width="18" height="7" rx="2" />
+    <path d="M7 7.5h.01M7 16.5h.01" />
+  </svg>
+);
+export const Cloud = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 9.5a4.25 4.25 0 0 1-.5 8.5H7Z" />
+  </svg>
+);
+export const Shield = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M12 3 4.5 6v6c0 4.5 3.2 7.8 7.5 9 4.3-1.2 7.5-4.5 7.5-9V6L12 3Z" />
+    <path d="m9 12 2 2 4-4" />
+  </svg>
+);
+export const Users = (p: IconProps) => (
+  <svg {...base(p)}>
+    <circle cx="9" cy="8" r="3.5" />
+    <path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5a6.5 6.5 0 0 1 3.5 5.5" />
+  </svg>
+);
+export const Rocket = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M5 15c-1.5 1.5-2 4.5-2 6 1.5 0 4.5-.5 6-2" />
+    <path d="M9 15 6 12c1.5-4.5 5.5-9 13-9 0 7.5-4.5 11.5-9 13l-1-1Z" />
+    <circle cx="14.5" cy="9.5" r="1.5" />
+  </svg>
+);
+export const InfinityLoop = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M12 12c-2-2.7-3.6-4-5.5-4a4 4 0 0 0 0 8c1.9 0 3.5-1.3 5.5-4Zm0 0c2 2.7 3.6 4 5.5 4a4 4 0 0 0 0-8c-1.9 0-3.5 1.3-5.5 4Z" />
+  </svg>
+);
 export const Close = (p: IconProps) => (
   <svg {...base(p)}>
     <path d="M6 6l12 12M18 6 6 18" />

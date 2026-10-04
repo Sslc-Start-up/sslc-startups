@@ -21,6 +21,7 @@ export function WhatsAppButton() {
     if (dismissed) return;
     // Greet only once the visitor has scrolled past the hero (never over the headline).
     let ready = false;
+    let hideTimer: ReturnType<typeof setTimeout> | undefined;
     const t = setTimeout(() => {
       ready = true;
       onScroll();
@@ -29,11 +30,13 @@ export function WhatsAppButton() {
       if (ready && window.scrollY > window.innerHeight) {
         setBubble(true);
         window.removeEventListener("scroll", onScroll);
+        hideTimer = setTimeout(() => setBubble(false), 9000); // never linger over content
       }
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       clearTimeout(t);
+      clearTimeout(hideTimer);
       window.removeEventListener("scroll", onScroll);
     };
   }, []);

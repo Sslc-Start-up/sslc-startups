@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 export function Tagline({ className }: { className?: string }) {
   return (
     <p className={cn("text-[15px] font-medium tracking-[-0.005em] text-fg/80 sm:text-base", className)}>
-      Build <span className="text-cyan">AI-Ready.</span> Scale <span className="text-[#b45cff]">Securely.</span> Grow{" "}
+      Build <span className="text-cyan">AI-Ready.</span> Scale <span className="text-violet">Securely.</span> Grow{" "}
       <span className="text-mint">Smarter.</span>
     </p>
   );

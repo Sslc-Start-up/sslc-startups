@@ -335,3 +335,34 @@ export const differentiators = [
 
 export const timelines = ["As soon as possible", "1–3 months", "3–6 months", "Flexible"] as const;
 export const budgets = ["Under $5k", "$5k – $15k", "$15k – $50k", "$50k+", "Not sure yet"] as const;
+
+/** Ways to engage — edit to match how SSLC actually contracts. */
+export const engagementModels = [
+  {
+    title: "Project-based",
+    tag: "Defined scope",
+    detail: "A clear scope, timeline and estimate for a product, MVP or feature set — delivered in milestones you can review.",
+    bestFor: "MVPs, new products, redesigns",
+  },
+  {
+    title: "Dedicated team",
+    tag: "Flexible capacity",
+    detail: "An SSLC team working as an extension of yours — product, design and engineering that scales with your roadmap.",
+    bestFor: "Growing products, ongoing roadmaps",
+  },
+  {
+    title: "Support & scale",
+    tag: "After launch",
+    detail: "Monitoring, maintenance, performance work and new features for software that is already live.",
+    bestFor: "Live platforms, legacy systems",
+  },
+];
+
+export const techGroups = [
+  { title: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS"] },
+  { title: "Mobile", items: ["React Native", "Expo", "Flutter", "iOS & Android"] },
+  { title: "Backend", items: ["Python", "Django", "Node.js", "REST / GraphQL"] },
+  { title: "Data", items: ["PostgreSQL", "Redis", "Celery", "Vector search"] },
+  { title: "Cloud & DevOps", items: ["AWS", "Docker", "CI/CD", "Monitoring"] },
+  { title: "AI", items: ["LLM APIs", "AI agents", "RAG", "Automation"] },
+];

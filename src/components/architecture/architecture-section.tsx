@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { architectureLayers, technologies } from "@/content/site";
-import { Reveal } from "@/components/ui/reveal";
+import { architectureLayers, techGroups } from "@/content/site";
+import { SectionHeading } from "@/components/ui/section-heading";
 import { cn } from "@/lib/utils";
 
 const ramp = ["#19c4ff", "#2f8bff", "#3d6bff", "#5a4dff", "#7a3dff", "#a83dff", "#e03bff"];
@@ -38,21 +38,18 @@ export function ArchitectureSection() {
   }, [paused, n]);
 
   return (
-    <section id="technology" aria-labelledby="architecture-title" className="section overflow-hidden border-t border-line bg-bg-1">
+    <section id="technology" aria-labelledby="architecture-title" className="section overflow-hidden bg-bg-1">
       <div className="container-x">
-        <Reveal className="max-w-3xl">
-          <p className="eyebrow">
-            <span className="slash" aria-hidden />
-            <span className="text-subtle">04</span> Engineering
-          </p>
-          <h2 id="architecture-title" className="mt-6 text-headline font-semibold text-sheen">
-            Built to scale. <span className="text-brand">Designed to last.</span>
-          </h2>
-          <p className="mt-6 max-w-2xl text-lede text-muted">
-            Every SSLC product is built on a layered architecture: each part has one job, can be changed without breaking
-            the rest, and scales independently as your business grows.
-          </p>
-        </Reveal>
+        <SectionHeading
+          id="architecture-title"
+          label="Engineering"
+          title={
+            <>
+              Built to scale. <span className="text-brand">Designed to last.</span>
+            </>
+          }
+          intro="Every SSLC product is built on a layered architecture: each part has one job, can be changed without breaking the rest, and scales independently as your business grows."
+        />
 
         <div className="mt-16 grid items-center gap-12 lg:mt-20 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16">
           {/* Isometric stack (bottom = cloud, top = frontend) */}
@@ -143,26 +140,35 @@ export function ArchitectureSection() {
           </div>
         </div>
 
-        <div className="mt-16 grid gap-10 border-t border-line pt-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
-          <ul className="grid gap-6 sm:grid-cols-3">
-            {principles.map((p) => (
-              <li key={p.title}>
-                <span aria-hidden className="block h-px w-8 bg-gradient-to-r from-cyan to-magenta" />
-                <h3 className="mt-4 text-[15px] font-medium text-fg">{p.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted">{p.detail}</p>
+        <ul className="mt-16 grid gap-6 border-t border-line pt-12 sm:grid-cols-3">
+          {principles.map((p) => (
+            <li key={p.title}>
+              <span aria-hidden className="block h-px w-8 bg-gradient-to-r from-cyan to-magenta" />
+              <h3 className="mt-4 text-[15px] font-medium text-fg">{p.title}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted">{p.detail}</p>
+            </li>
+          ))}
+        </ul>
+
+        {/* Technology cards */}
+        <div className="mt-16">
+          <h3 className="text-center text-[clamp(1.5rem,1.2rem+1vw,2rem)] font-semibold tracking-[-0.02em] text-fg">
+            Technologies we build with
+          </h3>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {techGroups.map((g) => (
+              <li key={g.title} className="rounded-2xl border border-line bg-surface p-6 shadow-[var(--shadow-card)]">
+                <p className="text-[17px] font-semibold text-fg">{g.title}</p>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {g.items.map((t) => (
+                    <li key={t} className="pill h-8 text-[13px]">
+                      {t}
+                    </li>
+                  ))}
+                </ul>
               </li>
             ))}
           </ul>
-          <div>
-            <p className="font-mono text-[11px] tracking-[0.2em] text-subtle uppercase">Our core stack</p>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {technologies.map((t) => (
-                <li key={t} className="pill font-mono text-[12px]">
-                  {t}
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
       </div>
     </section>
