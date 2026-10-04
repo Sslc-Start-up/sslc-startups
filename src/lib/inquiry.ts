@@ -17,14 +17,16 @@ export type InquiryResult =
   | { ok: false; reason: "not_configured" | "invalid" | "network"; message?: string };
 
 /**
- * Submits a project inquiry to the site's own API route (/api/inquiry),
- * which forwards it to the configured delivery service.
- *
- * Delivery is configured server-side — see src/app/api/inquiry/route.ts
- * and README ("Project inquiries"). Nothing here needs to change when the
- * email/CRM provider changes.
+ * Browser-side relay endpoint (e.g. FormSubmit's AJAX URL). Relays like
+ * FormSubmit block server-to-server requests, so when this is set the
+ * browser posts the brief directly. Otherwise the site's own /api/inquiry
+ * route is used (server-side webhook via INQUIRY_WEBHOOK_URL).
  */
+const PUBLIC_ENDPOINT = process.env.NEXT_PUBLIC_INQUIRY_ENDPOINT;
+
+/** Submits a project inquiry. See README ("Project inquiries"). */
 export async function submitProjectInquiry(inquiry: ProjectInquiry): Promise<InquiryResult> {
+  if (PUBLIC_ENDPOINT) return submitDirect(PUBLIC_ENDPOINT, inquiry);
   try {
     const res = await fetch("/api/inquiry", {
       method: "POST",
@@ -35,6 +37,35 @@ export async function submitProjectInquiry(inquiry: ProjectInquiry): Promise<Inq
     if (res.ok && data.delivered) return { ok: true };
     if (data.error === "not_configured") return { ok: false, reason: "not_configured" };
     if (res.status === 400) return { ok: false, reason: "invalid", message: data.message };
+    return { ok: false, reason: "network" };
+  } catch {
+    return { ok: false, reason: "network" };
+  }
+}
+
+async function submitDirect(endpoint: string, inquiry: ProjectInquiry): Promise<InquiryResult> {
+  // Honeypot filled → pretend success, send nothing.
+  if (inquiry.website) return { ok: true };
+  try {
+    const res = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        "Project type": inquiry.projectType,
+        Timeline: inquiry.timeline,
+        Budget: inquiry.budget || "Not specified",
+        "Project details": inquiry.details,
+        Name: inquiry.name,
+        Email: inquiry.email,
+        Company: inquiry.company || "—",
+        _subject: `New project inquiry: ${inquiry.projectType}${inquiry.company ? ` — ${inquiry.company}` : ""}`,
+        _replyto: inquiry.email,
+        _template: "table",
+        _captcha: "false",
+      }),
+    });
+    const data = (await res.json().catch(() => null)) as { success?: string | boolean } | null;
+    if (res.ok && (!data || data.success === true || data.success === "true")) return { ok: true };
     return { ok: false, reason: "network" };
   } catch {
     return { ok: false, reason: "network" };
