@@ -31,7 +31,7 @@ export function TiltCard({ className, children, max = 7, ...props }: ComponentPr
       onPointerMove={move}
       onPointerLeave={leave}
       className={cn(
-        "spotlight glow-border [transform-style:preserve-3d] transition-transform duration-500 ease-[var(--ease-out-expo)] will-change-transform",
+        "spotlight [transform-style:preserve-3d] transition-transform duration-500 ease-[var(--ease-out-expo)] will-change-transform",
         className,
       )}
       {...props}

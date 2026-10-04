@@ -4,7 +4,6 @@ import { AnimatePresence, m } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { company, nav } from "@/content/site";
 import { cn } from "@/lib/utils";
-import { CtaArrow } from "@/components/ui/button";
 import { ArrowRight, Mail, WhatsApp } from "@/components/ui/icons";
 import { InquiryLink } from "@/components/ui/inquiry-link";
 import { Logo } from "@/components/ui/logo";
@@ -56,27 +55,16 @@ export function SiteHeader() {
 
   return (
     <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-[padding] duration-500 ease-[var(--ease-out-expo)]",
-        scrolled && !open && "lg:pt-3",
-      )}
+      className="force-dark fixed inset-x-0 top-0 z-50"
     >
-      {/* Full-width bar at the top; detaches into a floating pill on scroll (desktop). */}
+      {/* Transparent over the dark hero; solid black bar once scrolled. */}
       <div
         className={cn(
-          "mx-auto border-b transition-all duration-500 ease-[var(--ease-out-expo)] lg:max-w-[1280px]",
-          scrolled || open
-            ? "border-line bg-bg/75 backdrop-blur-xl backdrop-saturate-150"
-            : "border-transparent bg-transparent",
-          scrolled && !open && "lg:max-w-[1200px] lg:rounded-2xl lg:border lg:shadow-[var(--shadow-float)]",
+          "border-b transition-[background-color,border-color] duration-500",
+          scrolled || open ? "border-line bg-black/90 backdrop-blur-xl" : "border-transparent bg-transparent",
         )}
       >
-        <div
-          className={cn(
-            "flex h-16 items-center justify-between px-5 transition-all duration-500 sm:px-8",
-            scrolled && !open ? "lg:h-[60px] lg:px-5" : "lg:h-[72px] lg:px-12",
-          )}
-        >
+        <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:h-[76px] lg:px-10">
           <Logo onClick={close} />
 
           <nav aria-label="Primary" className="hidden md:block">
@@ -85,7 +73,7 @@ export function SiteHeader() {
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="rounded-lg px-3.5 py-2 text-sm text-muted transition-colors duration-300 hover:text-fg"
+                    className="px-3 py-2 text-[12.5px] font-medium tracking-[0.08em] text-fg/85 uppercase transition-colors duration-300 hover:text-fg"
                   >
                     {item.label}
                   </a>
@@ -97,10 +85,7 @@ export function SiteHeader() {
           <div className="flex items-center gap-2">
             <ThemeToggle />
             <InquiryLink variant="primary" size="md" className="hidden sm:inline-flex">
-              Start a Project
-              <CtaArrow>
-                <ArrowRight size={15} />
-              </CtaArrow>
+              Start a project
             </InquiryLink>
 
             <button
@@ -110,7 +95,7 @@ export function SiteHeader() {
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? "Close menu" : "Open menu"}
-              className="relative grid size-10 place-items-center rounded-[10px] border border-line-strong bg-surface/60 md:hidden"
+              className="relative grid size-10 place-items-center rounded-full border border-line-strong md:hidden"
             >
               <span
                 className={cn(

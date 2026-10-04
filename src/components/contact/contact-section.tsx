@@ -14,11 +14,8 @@ export function ContactSection() {
     <section id="contact" aria-labelledby="contact-title" className="section border-t border-line bg-bg-1">
       <div className="container-x grid gap-14 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
         <Reveal>
-          <p className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-surface/70 px-3.5 py-1.5 text-[13px] font-medium text-fg/80 shadow-[var(--shadow-card)] backdrop-blur-sm">
-            <span className="slash !h-2 !w-2.5" aria-hidden />
-            Start a project
-          </p>
-          <h2 id="contact-title" className="mt-6 text-headline font-semibold text-sheen">
+          <p className="font-mono text-[11.5px] tracking-[0.22em] text-subtle uppercase">Start a project</p>
+          <h2 id="contact-title" className="mt-5 text-headline font-medium text-fg">
             Tell us what you&apos;re building.
           </h2>
           <p className="mt-6 max-w-md text-lede text-muted">

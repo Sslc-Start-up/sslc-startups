@@ -13,7 +13,7 @@ const solutionLinks = [
 ].filter((l) => services.some((s) => s.id === l.id));
 
 const companyLinks = [
-  { label: "About", href: "#about" },
+  { label: "FAQ", href: "#faq" },
   { label: "Work", href: "#work" },
   { label: "Process", href: "#process" },
   { label: "Technology", href: "#technology" },
@@ -27,7 +27,7 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden border-t border-line">
+    <footer className="force-dark relative overflow-hidden border-t border-line bg-bg">
       <div className="container-x relative pt-20 pb-10 lg:pt-28">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,1.3fr)_repeat(3,minmax(0,1fr))]">
           <div>

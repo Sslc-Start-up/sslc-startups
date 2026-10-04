@@ -35,7 +35,7 @@ export const nav = [
   { label: "Solutions", href: "#solutions" },
   { label: "Work", href: "#work" },
   { label: "Process", href: "#process" },
-  { label: "About", href: "#about" },
+  { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ] as const;
 
@@ -365,4 +365,32 @@ export const techGroups = [
   { title: "Data", items: ["PostgreSQL", "Redis", "Celery", "Vector search"] },
   { title: "Cloud & DevOps", items: ["AWS", "Docker", "CI/CD", "Monitoring"] },
   { title: "AI", items: ["LLM APIs", "AI agents", "RAG", "Automation"] },
+];
+
+/** FAQ — answers describe how SSLC works; edit freely. */
+export const faqs = [
+  {
+    q: "What kind of projects does SSLC take on?",
+    a: "Software products and business systems: AI agents and automation, SaaS platforms, web applications, iOS and Android apps, CRM/ERP systems, APIs and cloud infrastructure — from a first MVP to platforms that need to scale.",
+  },
+  {
+    q: "How does a project start?",
+    a: "Send us a short brief through the form or WhatsApp. We review it, set up a discovery call to understand your goals, users and constraints, and follow up with a written proposal covering scope, approach, timeline and estimate.",
+  },
+  {
+    q: "How can we work together?",
+    a: "Three ways: a project-based engagement with a defined scope, a dedicated team that works as an extension of yours, or support & scale for software that is already live.",
+  },
+  {
+    q: "Do you work with startups or only established companies?",
+    a: "Both. We work with founders validating a new product, growing businesses replacing manual processes, and larger teams that need extra product and engineering capacity.",
+  },
+  {
+    q: "Can you add AI to an existing product?",
+    a: "Yes — AI is integrated where it creates measurable value: support agents grounded in your data, lead qualification, document processing, recommendations and workflow automation, with guardrails and human review where it matters.",
+  },
+  {
+    q: "What happens after launch?",
+    a: "Launch is not the end of the relationship. We monitor, maintain and keep improving what we build — performance, new features, automation and scaling as your business grows.",
+  },
 ];

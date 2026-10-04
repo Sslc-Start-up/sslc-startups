@@ -21,8 +21,8 @@ src/
   components/
     navigation/        sticky glass header + fullscreen mobile menu
     hero/              hero, 3D WebGL logo scene (three.js), tagline, trust strip
-    services/ case-studies/ ai/ architecture/ process/
-    why/ engagement/ cta/ contact/ footer/
+    services/ process/ ai/ case-studies/ faq/ band/ mockups/
+    cta/ contact/ footer/
     assistant/         "Talk to SSLC" — frontend-only project assistant (no fake AI)
     ui/                buttons, reveal, section heading, logo, icons, spotlight, magnetic
 brand/                 original logo source file

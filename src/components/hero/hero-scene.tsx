@@ -15,7 +15,7 @@ import type * as THREE from "three";
  * get a single still frame. Phones get a lighter scene (no bloom, fewer
  * particles, capped pixel ratio).
  */
-export function HeroScene() {
+export function HeroScene({ centered = false, forceDark = false }: { centered?: boolean; forceDark?: boolean }) {
   const hostRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
 
@@ -51,7 +51,7 @@ export function HeroScene() {
       renderer.domElement.setAttribute("aria-hidden", "true");
       // Bloom output is opaque, so the canvas is feathered into the page with a mask.
       renderer.domElement.style.cssText =
-        "position:absolute;inset:0;width:100%;height:100%;-webkit-mask-image:radial-gradient(ellipse 62% 58% at 55% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 62% 58% at 55% 50%,#000 55%,transparent 100%);";
+        `position:absolute;inset:0;width:100%;height:100%;-webkit-mask-image:radial-gradient(ellipse 62% 58% at ${centered ? 50 : 55}% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 62% 58% at ${centered ? 50 : 55}% 50%,#000 55%,transparent 100%);`;
       host.appendChild(renderer.domElement);
 
       const scene = new THREE.Scene();
@@ -300,7 +300,7 @@ export function HeroScene() {
         // keep the mark fully in frame on narrow/tall containers
         camera.position.z = w / h < 1 ? 8 + (1 - w / h) * 6 : 8;
         // on wide stages, push the mark right so it never sits under the headline
-        stageOffset = w / h > 1 ? 0.85 : 0;
+        stageOffset = !centered && w / h > 1 ? 0.85 : 0;
         camera.updateProjectionMatrix();
       };
       const ro = new ResizeObserver(resize);
@@ -371,8 +371,8 @@ export function HeroScene() {
       io.observe(host);
 
       const applyTheme = () => {
-        light = document.documentElement.dataset.theme === "light";
-        renderer.setClearColor(light ? 0xf7f7fc : 0x04040a, 1);
+        light = !forceDark && document.documentElement.dataset.theme === "light";
+        renderer.setClearColor(light ? 0xffffff : 0x000000, 1);
         const blend = light ? THREE.NormalBlending : THREE.AdditiveBlending;
         const pm = particles.material as THREE.PointsMaterial;
         pm.blending = blend;
@@ -451,7 +451,7 @@ export function HeroScene() {
       interactions.forEach((ev) => window.removeEventListener(ev, start));
       cleanup();
     };
-  }, []);
+  }, [centered, forceDark]);
 
   return (
     <div ref={hostRef} className="absolute inset-0">
