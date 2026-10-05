@@ -1,164 +1,127 @@
-import Image from "next/image";
-import type { ComponentType, SVGProps } from "react";
-import { InquiryLink } from "@/components/ui/inquiry-link";
-import { buttonClass, CtaArrow } from "@/components/ui/button";
-import { ArrowRight, Bot, Cloud, Code, Cube, Gauge, InfinityLoop, Layers, Palette, Smartphone } from "@/components/ui/icons";
-import { Globe } from "./globe";
+import { QuickForm } from "@/components/contact/quick-form";
 
-type Icon = ComponentType<SVGProps<SVGSVGElement> & { size?: number }>;
+const stack = ["Next.js", "React Native", "Django", "Node.js", "AWS", "LLM APIs"];
 
-/** Service chips orbiting the globe — positions are % of the stage. */
-const chips: { label: string; icon: Icon; pos: string; tint: string; delay: string }[] = [
-  { label: "Web Development", icon: Code, pos: "top-[7%] left-[8%]", tint: "text-[#c084fc]", delay: "0s" },
-  { label: "Mobile Apps", icon: Smartphone, pos: "top-[14%] right-[2%]", tint: "text-[#f0abfc]", delay: "1.2s" },
-  { label: "Cloud & DevOps", icon: Cloud, pos: "top-[43%] left-[0%]", tint: "text-[#a5b4fc]", delay: "0.6s" },
-  { label: "AI & Automation", icon: Bot, pos: "top-[43%] right-[-4%]", tint: "text-[#e9d5ff]", delay: "1.8s" },
-  { label: "Custom Software", icon: Cube, pos: "bottom-[15%] left-[12%]", tint: "text-[#c4b5fd]", delay: "0.9s" },
-  { label: "UI/UX & Product Design", icon: Palette, pos: "bottom-[10%] right-[0%]", tint: "text-[#f5d0fe]", delay: "1.5s" },
+const stats = [
+  { value: "8", label: "Service lines" },
+  { value: "3", label: "Platforms: Web, iOS, Android" },
+  { value: "5", label: "Stage delivery process" },
+  { value: "1", label: "Team, idea to scale" },
 ];
 
-const features: { title: string; sub: string; icon: Icon }[] = [
-  { title: "Fast Delivery", sub: "Milestone sprints", icon: Gauge },
-  { title: "Scalable Architecture", sub: "Built for Growth", icon: Layers },
-  { title: "End-to-End Support", sub: "From Idea to Scale", icon: InfinityLoop },
-];
+/** Wireframe "tunnel" behind the hero: perspective lines, nested frames and frames flying outward. */
+function Tunnel() {
+  const W = 1440;
+  const H = 760;
+  const I = { x: 600, y: 300, w: 240, h: 160 };
+  // frame between the outer edge (t=0) and the inner rect (t=1)
+  const frame = (t: number) => ({
+    x: I.x * t,
+    y: I.y * t,
+    w: W - (W - I.w) * t,
+    h: H - (H - I.h) * t,
+  });
+  const rays: [number, number, number, number][] = [
+    [0, 0, I.x, I.y],
+    [W, 0, I.x + I.w, I.y],
+    [0, H, I.x, I.y + I.h],
+    [W, H, I.x + I.w, I.y + I.h],
+    [360, 0, I.x + 60, I.y],
+    [1080, 0, I.x + I.w - 60, I.y],
+    [360, H, I.x + 60, I.y + I.h],
+    [1080, H, I.x + I.w - 60, I.y + I.h],
+    [0, H / 2, I.x, I.y + I.h / 2],
+    [W, H / 2, I.x + I.w, I.y + I.h / 2],
+  ];
+  return (
+    <svg aria-hidden viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice" className="absolute inset-0 size-full">
+      <defs>
+        <linearGradient id="tunnel-stroke" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#19c4ff" stopOpacity="0.6" />
+          <stop offset="1" stopColor="#a855f7" stopOpacity="0.6" />
+        </linearGradient>
+      </defs>
+      <g stroke="rgb(255 255 255 / 0.08)" strokeWidth="1" fill="none">
+        {rays.map(([x1, y1, x2, y2], i) => (
+          <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} />
+        ))}
+        {[0.35, 0.62, 0.84, 1].map((t) => {
+          const f = frame(t);
+          return <rect key={t} x={f.x} y={f.y} width={f.w} height={f.h} />;
+        })}
+      </g>
+      <g fill="none" stroke="url(#tunnel-stroke)" strokeWidth="1.2">
+        {[0, 2, 4].map((d) => (
+          <rect
+            key={d}
+            x={I.x - 80}
+            y={I.y - 52}
+            width={I.w + 160}
+            height={I.h + 104}
+            className="origin-center animate-[tunnel_6s_linear_infinite] [transform-box:fill-box]"
+            style={{ animationDelay: `${d}s` }}
+          />
+        ))}
+      </g>
+    </svg>
+  );
+}
 
 export function Hero() {
   return (
-    <section aria-labelledby="hero-title" className="force-dark relative isolate overflow-hidden bg-[#05030f]">
-      {/* backdrop: stars, light streak, glows */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="stars absolute inset-0 opacity-70" />
-        <div className="absolute top-[38%] -left-[15%] h-[2px] w-[70%] rotate-[-14deg] bg-gradient-to-r from-transparent via-[#a855f7] to-transparent opacity-80 blur-[1px]" />
-        <div className="absolute top-[30%] -left-[20%] h-[220px] w-[75%] rotate-[-14deg] bg-[radial-gradient(closest-side,rgb(147_51_234/0.35),transparent)]" />
-        <div className="absolute top-[5%] right-[5%] h-[700px] w-[700px] bg-[radial-gradient(closest-side,rgb(79_70_229/0.28),transparent)]" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[#05030f]" />
+    <section aria-labelledby="hero-title" className="force-dark relative isolate overflow-hidden bg-black pt-16 lg:pt-[76px]">
+      <div aria-hidden className="absolute inset-0 -z-10">
+        <Tunnel />
+        <div className="absolute inset-0 bg-[radial-gradient(75%_65%_at_30%_40%,transparent,rgb(0_0_0/0.7))]" />
       </div>
 
-      <div className="container-x grid items-center gap-10 pt-28 pb-16 lg:min-h-[100svh] lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-4 lg:pt-24 lg:pb-12">
-        {/* copy */}
+      <div className="container-x grid items-center gap-12 py-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-16 lg:py-20">
         <div>
-          <p className="inline-flex animate-rise items-center gap-2.5 rounded-full border border-violet/30 bg-violet/10 px-3.5 py-1.5 text-[13px] text-white/85">
-            <span className="size-2 rounded-full bg-cyan shadow-[0_0_10px_2px_rgb(25_196_255/0.7)]" />
-            AI · Software · Scalable Solutions
-          </p>
           <h1
             id="hero-title"
-            className="mt-6 text-[clamp(2.4rem,1rem+3vw,3.55rem)] leading-[1.04] font-bold tracking-[-0.035em] text-white"
+            className="animate-slide-up font-display text-[clamp(1.85rem,0.9rem+2.3vw,2.95rem)] leading-[1.18] font-medium tracking-[-0.02em] text-white"
           >
-            <span className="block animate-slide-up">We build software</span>
-            <span className="block animate-slide-up [animation-delay:90ms]">that moves business</span>
-            <span className="block animate-slide-up [animation-delay:180ms]">
-              <span className="text-brand">forward.</span>
-              <span aria-hidden className="caret-bar text-white/80" />
-            </span>
+            World-Class Software Development for <span className="text-brand">Startups &amp; Growing Businesses</span>
           </h1>
-          <p className="mt-6 max-w-[30rem] animate-rise text-[17px] leading-relaxed text-white/75 [animation-delay:280ms]">
-            From idea to impact — we design, develop and deploy modern digital solutions that help businesses grow
-            faster, smarter and stronger.
+          <p className="mt-7 max-w-xl animate-rise text-[17px] leading-relaxed text-white/80 [animation-delay:150ms]">
+            We partner with founders and product leaders to design, build and scale AI-powered software — web
+            platforms, mobile apps and business systems that achieve real outcomes.
           </p>
 
-          <div className="mt-8 flex animate-rise flex-col gap-3 [animation-delay:360ms] sm:flex-row">
-            <InquiryLink variant="primary" size="lg" className="bg-white text-[#14102e]">
-              Start a Project
-              <CtaArrow>
-                <ArrowRight size={16} />
-              </CtaArrow>
-            </InquiryLink>
-            <a href="#work" className={buttonClass("secondary", "lg")}>
-              See Our Work
-            </a>
+          <div className="mt-10 animate-rise [animation-delay:260ms]">
+            <p className="text-[11px] font-semibold tracking-[0.18em] text-white/50 uppercase">Built with</p>
+            <ul className="mt-3 flex flex-wrap gap-x-7 gap-y-2">
+              {stack.map((s) => (
+                <li key={s} className="font-display text-[16px] font-medium text-white/85">
+                  {s}
+                </li>
+              ))}
+            </ul>
           </div>
-
-          <ul className="mt-10 flex animate-rise flex-col gap-5 [animation-delay:440ms] sm:flex-row sm:flex-wrap sm:gap-x-5">
-            {features.map(({ title, sub, icon: I }) => (
-              <li key={title} className="flex items-center gap-3">
-                <span className="grid size-10 shrink-0 place-items-center rounded-full border border-violet/30 bg-violet/10 text-[#c4b5fd]">
-                  <I size={19} />
-                </span>
-                <span className="leading-tight">
-                  <span className="block text-[13.5px] font-medium whitespace-nowrap text-white">{title}</span>
-                  <span className="block text-[12px] text-white/60">{sub}</span>
-                </span>
-              </li>
-            ))}
-          </ul>
         </div>
 
-        {/* globe stage */}
-        <div aria-hidden className="relative mx-auto aspect-square w-full max-w-[720px] lg:-mr-6 animate-fade [animation-delay:200ms]">
-          {/* orbit rings */}
-          <svg viewBox="0 0 600 600" className="absolute inset-0 size-full overflow-visible">
-            <defs>
-              <linearGradient id="orbit-a" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stopColor="#22d3ee" stopOpacity="0.1" />
-                <stop offset="0.5" stopColor="#818cf8" stopOpacity="0.8" />
-                <stop offset="1" stopColor="#e879f9" stopOpacity="0.2" />
-              </linearGradient>
-            </defs>
-            {[
-              { rx: 290, ry: 96, rot: -18, dur: "9s" },
-              { rx: 270, ry: 120, rot: 24, dur: "12s" },
-              { rx: 250, ry: 70, rot: 62, dur: "15s" },
-            ].map((o, i) => {
-              const d = `M ${300 - o.rx} 300 a ${o.rx} ${o.ry} 0 1 0 ${o.rx * 2} 0 a ${o.rx} ${o.ry} 0 1 0 ${-o.rx * 2} 0`;
-              return (
-                <g key={i} transform={`rotate(${o.rot} 300 300)`}>
-                  <path d={d} fill="none" stroke="url(#orbit-a)" strokeWidth="1.2" />
-                  <circle r="3.5" fill="#f5d0fe" opacity="0">
-                    <animateMotion dur={o.dur} repeatCount="indefinite" path={d} />
-                    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur={o.dur} repeatCount="indefinite" />
-                  </circle>
-                </g>
-              );
-            })}
-          </svg>
+        <div className="animate-rise border border-white/15 bg-[#141416]/95 p-6 shadow-[0_30px_80px_-30px_rgb(0_0_0/0.9)] [animation-delay:200ms] sm:p-8">
+          <QuickForm />
+        </div>
+      </div>
 
-          <div className="absolute inset-[13%] rounded-full shadow-[0_0_120px_20px_rgb(99_102_241/0.35)]" />
-          <Globe className="absolute inset-[11%] size-[78%]" />
-
-          {/* the SSLC mark */}
-          <div className="absolute inset-0 grid place-items-center">
-            <div className="relative animate-[float-y_6s_ease-in-out_infinite]">
-              <div className="absolute inset-[-35%] rounded-full bg-[radial-gradient(closest-side,rgb(168_85_247/0.5),transparent)]" />
-              <Image
-                src="/brand/sslc-mark.png"
-                alt=""
-                width={256}
-                height={256}
-                priority
-                className="relative size-28 drop-shadow-[0_10px_40px_rgb(168_85_247/0.7)] sm:size-36"
-              />
-            </div>
-          </div>
-
-          {/* service chips */}
-          {chips.map(({ label, icon: I, pos, tint, delay }) => (
+      <div className="container-x pb-16 lg:pb-20">
+        <dl className="grid grid-cols-2 lg:grid-cols-4">
+          {stats.map((s, i) => (
             <div
-              key={label}
-              className={`absolute ${pos} hidden animate-[float-y_7s_ease-in-out_infinite] items-center gap-2.5 rounded-full border border-white/12 bg-[#0d0a24]/70 py-2.5 pr-4 pl-3.5 text-[13.5px] text-white/90 shadow-[0_8px_30px_-10px_rgb(0_0_0/0.8)] backdrop-blur-md sm:flex`}
-              style={{ animationDelay: delay }}
+              key={s.label}
+              className={[
+                "flex flex-col-reverse px-4 py-6 text-center",
+                i % 2 === 1 ? "border-l border-white/15" : "",
+                i >= 2 ? "border-t border-white/15 lg:border-t-0" : "",
+                i === 2 ? "lg:border-l" : "",
+              ].join(" ")}
             >
-              <I size={18} className={tint} />
-              {label}
+              <dt className="mt-3 text-[15px] text-white/60">{s.label}</dt>
+              <dd className="font-display text-[clamp(2.6rem,1.6rem+2.8vw,4.4rem)] leading-none font-medium text-white/85">{s.value}</dd>
             </div>
           ))}
-
-          {/* handwritten note */}
-          <div className="absolute top-[12%] -right-[16%] hidden rotate-[-12deg] text-right font-[family-name:var(--font-hand)] text-[22px] leading-[1.15] text-white/55 xl:block">
-            Ideas
-            <br />
-            Technology
-            <br />
-            People
-            <br />
-            Growth
-            <svg viewBox="0 0 60 60" className="mt-1 ml-auto size-12 rotate-[30deg] text-white/45" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-              <path d="M50 4C48 26 34 44 10 52" />
-              <path d="M10 52l10-1M10 52l4-9" />
-            </svg>
-          </div>
-        </div>
+        </dl>
       </div>
     </section>
   );

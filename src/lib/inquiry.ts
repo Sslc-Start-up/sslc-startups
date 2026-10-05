@@ -8,6 +8,7 @@ export type ProjectInquiry = {
   name: string;
   email: string;
   company: string;
+  phone?: string;
   /** Honeypot — must stay empty. */
   website?: string;
 };
@@ -58,6 +59,7 @@ async function submitDirect(endpoint: string, inquiry: ProjectInquiry): Promise<
         Name: inquiry.name,
         Email: inquiry.email,
         Company: inquiry.company || "—",
+        Phone: inquiry.phone || "—",
         _subject: `New project inquiry: ${inquiry.projectType}${inquiry.company ? ` — ${inquiry.company}` : ""}`,
         _replyto: inquiry.email,
         _template: "table",
@@ -84,6 +86,7 @@ export function inquiryMailto(inquiry: ProjectInquiry) {
     "",
     `${inquiry.name}${inquiry.company ? `, ${inquiry.company}` : ""}`,
     inquiry.email,
+    inquiry.phone ?? "",
   ].join("\n");
   return `mailto:${company.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }

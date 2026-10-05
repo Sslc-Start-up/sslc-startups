@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Caveat, Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Unbounded } from "next/font/google";
 import { company, faqs, seo, services } from "@/content/site";
 import { siteUrl } from "@/lib/site-url";
 import { Analytics } from "@vercel/analytics/next";
@@ -8,8 +8,8 @@ import "./globals.css";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
-// Decorative handwriting in the hero only; not preloaded.
-const hand = Caveat({ subsets: ["latin"], variable: "--font-hand", display: "swap", preload: false });
+// "optional": no late swap repaint of the hero headline (protects LCP); cached for later visits.
+const display = Unbounded({ subsets: ["latin"], variable: "--font-unbounded", display: "optional" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#05030f",
+  themeColor: "#ffffff",
   colorScheme: "dark light",
 };
 
@@ -116,7 +116,7 @@ const themeScript = `try{var t=localStorage.getItem("sslc-theme");if(t==="light"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-theme="dark" className={`${geist.variable} ${geistMono.variable} ${hand.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme="light" className={`${geist.variable} ${geistMono.variable} ${display.variable}`} suppressHydrationWarning>
       <head>
         {/* Apply the saved theme before first paint (no flash). */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

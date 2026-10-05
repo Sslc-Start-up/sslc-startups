@@ -55,11 +55,9 @@ export const seo = {
 };
 
 export const nav = [
-  { label: "Services", href: "#services" },
-  { label: "Solutions", href: "#process" },
   { label: "Work", href: "#work" },
-  { label: "AI Agents", href: "#solutions" },
-  { label: "About", href: "#faq" },
+  { label: "Services", href: "#services" },
+  { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ] as const;
 

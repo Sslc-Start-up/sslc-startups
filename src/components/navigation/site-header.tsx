@@ -54,14 +54,12 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header
-      className="force-dark fixed inset-x-0 top-0 z-50"
-    >
-      {/* Transparent over the dark hero; solid black bar once scrolled. */}
+    <header className="fixed inset-x-0 top-0 z-50">
+      {/* Solid bar (white in light mode); gains a hairline and blur once scrolled. */}
       <div
         className={cn(
-          "border-b transition-[background-color,border-color] duration-500",
-          scrolled || open ? "border-line bg-[#05030f]/85 backdrop-blur-xl" : "border-transparent bg-transparent",
+          "border-b bg-bg/95 backdrop-blur-xl transition-[border-color,box-shadow] duration-500",
+          scrolled || open ? "border-line shadow-[0_6px_24px_-18px_rgb(0_0_0/0.35)]" : "border-transparent",
         )}
       >
         <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:h-[76px] lg:px-10">

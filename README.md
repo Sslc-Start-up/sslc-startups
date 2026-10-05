@@ -20,11 +20,10 @@ src/
   lib/                 inquiry submission, prefill signal, site URL, cn()
   components/
     navigation/        sticky glass header + fullscreen mobile menu
-    hero/              hero with 2D-canvas particle globe, service chips, tagline
-    services/ process/ ai/ case-studies/ faq/ band/ mockups/
-    cta/ contact/ footer/
-    assistant/         "Talk to SSLC" — frontend-only project assistant (no fake AI)
-    ui/                buttons, reveal, section heading, logo, icons, spotlight, magnetic
+    hero/              black hero: wireframe tunnel, headline, quick inquiry form, stats
+    work/ why/ services/ faq/ mockups/ contact/ footer/
+    assistant/         floating WhatsApp button
+    ui/                buttons, reveal, logo, icons, spotlight, magnetic
 brand/                 original logo source file
 ```
 
@@ -51,12 +50,7 @@ delivered server-side** — the visitor instead gets a pre-written email to
 Everything below is wired to render automatically once filled in `src/content/site.ts`:
 
 - **Real client projects** — add `caseStudies` entries with `kind: "project"` (only verified facts and metrics).
-- **Real product screenshots** — the solution-card visuals are illustrative CSS mock-ups (`components/case-studies/visuals.tsx`).
+- **Real product screenshots** — the solution-card visuals are illustrative CSS mock-ups (`components/mockups/mockups.tsx`).
 - **Social profiles** — `company.social[].href` (LinkedIn, Instagram, GitHub are hidden while empty).
 
 The three "Solution blueprint" cards describe how SSLC builds each class of system; they are not client work.
-
-## Hero globe
-
-`components/hero/globe.tsx` draws the glowing particle globe on a 2D canvas (no 3D library). It pauses
-off-screen and in background tabs; reduced-motion users get a still frame.

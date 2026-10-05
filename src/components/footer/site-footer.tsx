@@ -15,8 +15,8 @@ const solutionLinks = [
 const companyLinks = [
   { label: "FAQ", href: "#faq" },
   { label: "Work", href: "#work" },
-  { label: "Process", href: "#process" },
-  { label: "Technology", href: "#technology" },
+  { label: "Why SSLC", href: "#diff-title" },
+  { label: "Services", href: "#services" },
   { label: "Contact", href: "#contact" },
 ];
 

@@ -1,11 +1,9 @@
 import { SiteHeader } from "@/components/navigation/site-header";
 import { Hero } from "@/components/hero/hero";
-import { ServicesOverview } from "@/components/services/services-overview";
-import { WorkSection } from "@/components/case-studies/work-section";
-import { TeamCards } from "@/components/process/team-cards";
-import { AiSection } from "@/components/ai/ai-section";
+import { OurWork } from "@/components/work/our-work";
+import { Different } from "@/components/why/different";
+import { ServiceCards } from "@/components/services/service-cards";
 import { FaqSection } from "@/components/faq/faq-section";
-import { CtaSection } from "@/components/cta/cta-section";
 import { ContactSection } from "@/components/contact/contact-section";
 import { SiteFooter } from "@/components/footer/site-footer";
 import { WhatsAppButton } from "@/components/assistant/whatsapp-button";
@@ -16,12 +14,10 @@ export default function HomePage() {
       <SiteHeader />
       <main id="main">
         <Hero />
-        <ServicesOverview />
-        <WorkSection />
-        <TeamCards />
-        <AiSection />
+        <OurWork />
+        <Different />
+        <ServiceCards />
         <FaqSection />
-        <CtaSection />
         <ContactSection />
       </main>
       <SiteFooter />
