@@ -192,3 +192,54 @@ export function PortalMock({ className }: MockProps) {
     </div>
   );
 }
+
+/** AI document extraction: an invoice on the left, extracted fields on the right. */
+export function DocumentMock({ className }: MockProps) {
+  const fields = [
+    ["Vendor", "Orbit Foods Pvt Ltd", true],
+    ["Invoice no.", "INV-2041", true],
+    ["Date", "04 Oct 2026", true],
+    ["Amount", "₹48,250.00", true],
+    ["GSTIN", "Needs review", false],
+  ] as const;
+  return (
+    <div className={cn("force-dark overflow-hidden rounded-xl border border-line-strong bg-[#0c0c10] shadow-2xl", className)} aria-hidden>
+      <div className="flex items-center gap-2 border-b border-line px-3 py-2.5">
+        <span className="grid size-5 place-items-center rounded-md bg-gradient-to-br from-cyan to-violet text-[9px] font-bold text-white">AI</span>
+        <span className="text-[10.5px] font-medium text-fg">Document extraction</span>
+        <span className="ml-auto font-mono text-[9px] text-subtle">invoice_2041.pdf</span>
+      </div>
+      <div className="grid grid-cols-[0.8fr_1.2fr] gap-3 p-3">
+        <div className="rounded-md bg-white p-2.5">
+          <div className="h-1.5 w-10 rounded-sm bg-[#1f2937]" />
+          <div className="mt-2 space-y-1">
+            {[90, 70, 80, 55].map((w, i) => (
+              <div key={i} className="h-1 rounded-sm bg-[#cbd5e1]" style={{ width: `${w}%` }} />
+            ))}
+          </div>
+          <div className="mt-3 space-y-1">
+            {[100, 100, 100].map((_, i) => (
+              <div key={i} className="flex justify-between">
+                <span className="h-1 w-1/2 rounded-sm bg-[#cbd5e1]" />
+                <span className="h-1 w-1/5 rounded-sm bg-[#94a3b8]" />
+              </div>
+            ))}
+          </div>
+          <div className="mt-3 ml-auto h-1.5 w-1/3 rounded-sm bg-[#6d28d9]" />
+        </div>
+        <div className="space-y-1.5">
+          {fields.map(([k, v, ok]) => (
+            <div key={k} className="flex items-center justify-between rounded-md border border-line bg-white/[0.03] px-2 py-1.5">
+              <span className="text-[8.5px] text-subtle">{k}</span>
+              <span className={cn("flex items-center gap-1 text-[9px]", ok ? "text-fg" : "text-[#febc2e]")}>
+                {v}
+                <span className={cn("size-1.5 rounded-full", ok ? "bg-mint" : "bg-[#febc2e]")} />
+              </span>
+            </div>
+          ))}
+          <div className="rounded-md bg-accent/25 px-2 py-1.5 text-center text-[9px] font-medium text-fg">Synced to ERP · 1 for review</div>
+        </div>
+      </div>
+    </div>
+  );
+}

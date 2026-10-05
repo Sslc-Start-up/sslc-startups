@@ -3,7 +3,7 @@ import { caseStudies } from "@/content/site";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
 import { InquiryLink } from "@/components/ui/inquiry-link";
 import { ArrowUpRight } from "@/components/ui/icons";
-import { ChatMock, DashboardMock, PhoneMock } from "@/components/mockups/mockups";
+import { ChatMock, DashboardMock, DocumentMock, PhoneMock, PipelineMock, PortalMock } from "@/components/mockups/mockups";
 
 type Mock = ComponentType<{ className?: string }>;
 
@@ -12,9 +12,12 @@ const panels: { id: string; mock: Mock; bg: string; mockClass: string }[] = [
   { id: "ai-support-agent", mock: ChatMock, bg: "bg-[#0e0b26]", mockClass: "w-[340px] scale-[0.82]" },
   { id: "multi-tenant-saas", mock: DashboardMock, bg: "bg-[#e9ebf3]", mockClass: "w-[460px] scale-[0.66]" },
   { id: "realtime-mobile", mock: PhoneMock, bg: "bg-[#1a0f2e]", mockClass: "w-[190px] scale-[0.68]" },
+  { id: "crm-erp-suite", mock: PipelineMock, bg: "bg-[#0c1a2b]", mockClass: "w-[420px] scale-[0.72]" },
+  { id: "ai-document-automation", mock: DocumentMock, bg: "bg-[#e9ebf3]", mockClass: "w-[400px] scale-[0.76]" },
+  { id: "customer-portal", mock: PortalMock, bg: "bg-[#161032]", mockClass: "w-[380px] scale-[0.76]" },
 ];
 
-/** "Our Work" — three product panels in a responsive grid (no horizontal scrolling). */
+/** "Our Work" — product panels in a responsive grid (no horizontal scrolling). */
 export function OurWork() {
   return (
     <section id="work" aria-labelledby="work-title" className="bg-bg py-20 lg:py-28">
@@ -38,7 +41,7 @@ export function OurWork() {
             const study = caseStudies.find((c) => c.id === id);
             if (!study) return null;
             return (
-              <RevealItem key={id} delay={i * 0.08} className="group flex min-w-0 flex-col">
+              <RevealItem key={id} delay={(i % 3) * 0.08} className="group flex min-w-0 flex-col">
                 <div className={`relative aspect-[4/3] min-w-0 overflow-hidden border border-line ${bg}`}>
                   <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${mockClass}`}>
                     <div className="transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:-translate-y-2">

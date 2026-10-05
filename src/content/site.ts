@@ -328,6 +328,45 @@ export const caseStudies: CaseStudy[] = [
     impact: "One team ships every platform together — features, fixes and data stay in step.",
     metrics: [],
   },
+  {
+    id: "crm-erp-suite",
+    kind: "blueprint",
+    name: "Sales CRM & ERP",
+    summary: "Leads, orders, inventory and invoices in one system.",
+    problem: "Sales, operations and finance work in separate tools, so data is re-typed and never quite agrees.",
+    solution:
+      "One connected platform with pipelines, quotes-to-orders, stock reservation and invoicing, with role-based access for every team.",
+    capabilities: ["Sales pipeline", "Order management", "Inventory", "Invoicing"],
+    technology: ["Django", "PostgreSQL", "Celery", "React"],
+    impact: "Every team works from the same live data, with far less manual entry.",
+    metrics: [],
+  },
+  {
+    id: "ai-document-automation",
+    kind: "blueprint",
+    name: "AI Document Automation",
+    summary: "Invoices, forms and emails processed automatically.",
+    problem: "Teams spend hours reading documents and copying the same data into business systems.",
+    solution:
+      "An AI pipeline that extracts and validates data from documents, routes exceptions to a human and syncs results to your systems.",
+    capabilities: ["Data extraction", "Validation rules", "Human review", "System sync"],
+    technology: ["Python", "LLM APIs", "Redis", "AWS"],
+    impact: "Repetitive document work runs in the background, with people handling only the exceptions.",
+    metrics: [],
+  },
+  {
+    id: "customer-portal",
+    kind: "blueprint",
+    name: "Customer Portal",
+    summary: "Self-service requests, quotes and invoices for your customers.",
+    problem: "Customers chase updates by email and phone because they can't see the status of their requests.",
+    solution:
+      "A secure portal where customers raise requests, approve quotes, track progress and pay invoices — connected to your back office.",
+    capabilities: ["Secure sign-in", "Request tracking", "Quote approval", "Online payments"],
+    technology: ["Next.js", "Node.js", "PostgreSQL", "Stripe / Razorpay"],
+    impact: "Fewer status calls and faster approvals, with customers served around the clock.",
+    metrics: [],
+  },
 ];
 
 export const aiUseCases = [
