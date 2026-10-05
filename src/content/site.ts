@@ -18,7 +18,7 @@ export const company = {
   footerLine: ["Build better software.", "Build better businesses."],
   /** Add real profile URLs here; empty entries are not rendered. */
   social: [
-    { label: "LinkedIn", href: "https://www.linkedin.com/company/sslc-starup/" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/sslc-startup/" },
     { label: "Instagram", href: "" },
     { label: "GitHub", href: "" },
   ],

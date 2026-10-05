@@ -19,6 +19,8 @@ const companyLinks = [
   { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/#contact" },
   { label: "Privacy Policy", href: "/privacy" },
+  { label: "Refund Policy", href: "/refund-policy" },
+  { label: "Cookie Policy", href: "/cookie-policy" },
 ];
 
 const linkClass = "text-[14px] text-muted transition-colors duration-300 hover:text-fg";
@@ -112,9 +114,17 @@ export function SiteFooter() {
         <div className="mt-10 flex flex-col gap-3 border-t border-line pt-8 text-[13px] text-subtle sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {company.name}. All rights reserved. ·{" "}
-            <a href="/privacy" className="underline-offset-4 hover:text-fg hover:underline">
-              Privacy Policy
-            </a>
+            <Link href="/privacy" className="underline-offset-4 hover:text-fg hover:underline">
+              Privacy
+            </Link>{" "}
+            ·{" "}
+            <Link href="/refund-policy" className="underline-offset-4 hover:text-fg hover:underline">
+              Refunds
+            </Link>{" "}
+            ·{" "}
+            <Link href="/cookie-policy" className="underline-offset-4 hover:text-fg hover:underline">
+              Cookies
+            </Link>
           </p>
           <p className="font-mono text-[11px] tracking-[0.16em] uppercase">Software product engineering</p>
         </div>

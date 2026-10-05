@@ -4,6 +4,7 @@ import { company, faqs, seo, services } from "@/content/site";
 import { siteUrl } from "@/lib/site-url";
 import { Analytics } from "@vercel/analytics/next";
 import { MotionProvider } from "@/components/layout/motion-provider";
+import { CookieBanner } from "@/components/marketing/cookie-banner";
 import "./globals.css";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
@@ -130,6 +131,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <MotionProvider>{children}</MotionProvider>
         <Analytics />
+        <CookieBanner />
         <div aria-hidden className="grain" />
         <script
           type="application/ld+json"

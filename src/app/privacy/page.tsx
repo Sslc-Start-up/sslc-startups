@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import Link from "next/link";
 import { company } from "@/content/site";
-import { SiteHeader } from "@/components/navigation/site-header";
-import { SiteFooter } from "@/components/footer/site-footer";
+import { LegalPage, Section } from "@/components/legal/legal-page";
 
-const EFFECTIVE = "5 October 2026";
+const EFFECTIVE = "6 October 2026";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -12,19 +11,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
   robots: { index: true, follow: true },
 };
-
-function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
-  return (
-    <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-28 border-t border-line pt-10">
-      <h2 id={`${id}-title`} className="font-display text-[clamp(1.2rem,1rem+0.6vw,1.5rem)] font-medium text-fg">
-        {title}
-      </h2>
-      <div className="mt-4 space-y-4 text-[16px] leading-relaxed text-muted [&_li]:pl-1 [&_strong]:font-semibold [&_strong]:text-fg [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5">
-        {children}
-      </div>
-    </section>
-  );
-}
 
 const toc = [
   ["who", "Who we are"],
@@ -44,45 +30,24 @@ const toc = [
 
 export default function PrivacyPage() {
   return (
-    <>
-      <SiteHeader />
-      <main id="main" className="bg-bg pt-16 lg:pt-[76px]">
-        <div className="force-dark bg-black">
-          <div className="container-x py-16 lg:py-20">
-            <p className="font-mono text-[11.5px] tracking-[0.22em] text-white/55 uppercase">Legal</p>
-            <h1 className="mt-4 font-display text-[clamp(2rem,1.2rem+2.4vw,3.2rem)] font-medium tracking-[-0.02em] text-white">
-              Privacy Policy
-            </h1>
-            <p className="mt-4 max-w-2xl text-[16px] text-white/70">
-              This policy explains what personal information {company.name} collects when you use{" "}
-              <strong className="text-white">sslctstartup.com</strong> or contact us, how we use it and the choices you
-              have.
-            </p>
-            <p className="mt-6 text-[14px] text-white/55">Effective date: {EFFECTIVE}</p>
-          </div>
-        </div>
-
-        <div className="container-x grid gap-12 py-14 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-16 lg:py-20">
-          <nav aria-label="On this page" className="lg:sticky lg:top-28 lg:self-start">
-            <p className="font-mono text-[11px] tracking-[0.2em] text-subtle uppercase">On this page</p>
-            <ol className="mt-4 space-y-2 text-[14px]">
-              {toc.map(([id, label]) => (
-                <li key={id}>
-                  <a href={`#${id}`} className="text-muted transition-colors hover:text-fg">
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ol>
-          </nav>
-
-          <article className="max-w-3xl space-y-10">
+    <LegalPage
+      title="Privacy Policy"
+      effective={EFFECTIVE}
+      toc={toc}
+      intro={
+        <>
+          This policy explains what personal information {company.name} collects when you use{" "}
+          <strong className="text-white">sslctstartup.com</strong> or contact us, how we use it and the choices you
+          have.
+        </>
+      }
+    >
             <Section id="who" title="1. Who we are">
               <p>
                 {company.name} (&ldquo;SSLC&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) is a software development company
                 that designs and builds AI, SaaS, web, mobile and business software. We are responsible for the personal
                 information described in this policy. You can reach us at{" "}
-                <a className="text-fg underline underline-offset-4" href={`mailto:${company.email}`}>
+                <a href={`mailto:${company.email}`}>
                   {company.email}
                 </a>
                 .
@@ -93,7 +58,8 @@ export default function PrivacyPage() {
               <p>
                 <strong>Information you give us.</strong> When you fill in a project form on our website, we collect
                 what you enter: your name, email address, phone or WhatsApp number (optional), company name (optional),
-                the type of project, timeline, budget range (optional) and your project description. If you email us or
+                the type of project, timeline, budget range (optional) and your project description. If you leave your email in
+                our &ldquo;free consultation&rdquo; pop-up, we collect that email address. If you email us or
                 message us on WhatsApp, we receive the details you choose to share in that conversation.
               </p>
               <p>
@@ -181,7 +147,7 @@ export default function PrivacyPage() {
               </ul>
               <p>
                 To make a request, email{" "}
-                <a className="text-fg underline underline-offset-4" href={`mailto:${company.email}`}>
+                <a href={`mailto:${company.email}`}>
                   {company.email}
                 </a>
                 . We may need to confirm your identity before acting on it, and we aim to respond within 30 days.
@@ -191,9 +157,10 @@ export default function PrivacyPage() {
             <Section id="cookies" title="9. Cookies and local storage">
               <p>
                 We do not use advertising or tracking cookies. Our analytics is cookie-free. The website stores two small
-                preferences in your own browser: your light/dark theme choice, and whether you have dismissed the
-                WhatsApp greeting. These stay on your device and are not sent to us. You can clear them at any time in
-                your browser settings.
+                preferences in your own browser: your light/dark theme choice, your cookie-notice choice, and whether you
+                have dismissed the WhatsApp greeting or email pop-up. These stay on your device and are not sent to us.
+                You can clear them at any time in your browser settings. Read more in our{" "}
+                <Link href="/cookie-policy">Cookie Policy</Link>.
               </p>
             </Section>
 
@@ -226,20 +193,16 @@ export default function PrivacyPage() {
                 <strong>{company.name}</strong>
                 <br />
                 Email:{" "}
-                <a className="text-fg underline underline-offset-4" href={`mailto:${company.email}`}>
+                <a href={`mailto:${company.email}`}>
                   {company.email}
                 </a>
                 <br />
                 WhatsApp:{" "}
-                <a className="text-fg underline underline-offset-4" href={company.whatsappHref} target="_blank" rel="noopener noreferrer">
+                <a href={company.whatsappHref} target="_blank" rel="noopener noreferrer">
                   {company.phone}
                 </a>
               </p>
             </Section>
-          </article>
-        </div>
-      </main>
-      <SiteFooter />
-    </>
+    </LegalPage>
   );
 }

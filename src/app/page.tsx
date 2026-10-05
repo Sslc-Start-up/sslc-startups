@@ -7,6 +7,7 @@ import { FaqSection } from "@/components/faq/faq-section";
 import { ContactSection } from "@/components/contact/contact-section";
 import { SiteFooter } from "@/components/footer/site-footer";
 import { WhatsAppButton } from "@/components/assistant/whatsapp-button";
+import { EmailCapture } from "@/components/marketing/email-capture";
 
 export default function HomePage() {
   return (
@@ -22,6 +23,7 @@ export default function HomePage() {
       </main>
       <SiteFooter />
       <WhatsAppButton />
+      <EmailCapture />
     </>
   );
 }
