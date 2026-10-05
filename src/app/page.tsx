@@ -1,10 +1,9 @@
 import { SiteHeader } from "@/components/navigation/site-header";
 import { Hero } from "@/components/hero/hero";
-import { ValueBand } from "@/components/band/value-band";
-import { ServicesTabs } from "@/components/services/services-tabs";
+import { ServicesOverview } from "@/components/services/services-overview";
+import { WorkSection } from "@/components/case-studies/work-section";
 import { TeamCards } from "@/components/process/team-cards";
 import { AiSection } from "@/components/ai/ai-section";
-import { WorkSection } from "@/components/case-studies/work-section";
 import { FaqSection } from "@/components/faq/faq-section";
 import { CtaSection } from "@/components/cta/cta-section";
 import { ContactSection } from "@/components/contact/contact-section";
@@ -17,11 +16,10 @@ export default function HomePage() {
       <SiteHeader />
       <main id="main">
         <Hero />
-        <ValueBand />
-        <ServicesTabs />
+        <ServicesOverview />
+        <WorkSection />
         <TeamCards />
         <AiSection />
-        <WorkSection />
         <FaqSection />
         <CtaSection />
         <ContactSection />

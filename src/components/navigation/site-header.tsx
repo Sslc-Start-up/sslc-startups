@@ -61,7 +61,7 @@ export function SiteHeader() {
       <div
         className={cn(
           "border-b transition-[background-color,border-color] duration-500",
-          scrolled || open ? "border-line bg-black/90 backdrop-blur-xl" : "border-transparent bg-transparent",
+          scrolled || open ? "border-line bg-[#05030f]/85 backdrop-blur-xl" : "border-transparent bg-transparent",
         )}
       >
         <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:h-[76px] lg:px-10">
@@ -73,7 +73,7 @@ export function SiteHeader() {
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="px-3 py-2 text-[12.5px] font-medium tracking-[0.08em] text-fg/85 uppercase transition-colors duration-300 hover:text-fg"
+                    className="px-3.5 py-2 text-[14.5px] text-fg/85 transition-colors duration-300 hover:text-fg"
                   >
                     {item.label}
                   </a>
@@ -85,7 +85,7 @@ export function SiteHeader() {
           <div className="flex items-center gap-2">
             <ThemeToggle />
             <InquiryLink variant="primary" size="md" className="hidden sm:inline-flex">
-              Start a project
+              Start a Project <ArrowRight size={15} />
             </InquiryLink>
 
             <button

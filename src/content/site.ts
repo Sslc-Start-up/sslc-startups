@@ -32,10 +32,10 @@ export const seo = {
 
 export const nav = [
   { label: "Services", href: "#services" },
-  { label: "Solutions", href: "#solutions" },
+  { label: "Solutions", href: "#process" },
   { label: "Work", href: "#work" },
-  { label: "Process", href: "#process" },
-  { label: "FAQ", href: "#faq" },
+  { label: "AI Agents", href: "#solutions" },
+  { label: "About", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ] as const;
 

@@ -20,7 +20,7 @@ src/
   lib/                 inquiry submission, prefill signal, site URL, cn()
   components/
     navigation/        sticky glass header + fullscreen mobile menu
-    hero/              hero, 3D WebGL logo scene (three.js), tagline, trust strip
+    hero/              hero with 2D-canvas particle globe, service chips, tagline
     services/ process/ ai/ case-studies/ faq/ band/ mockups/
     cta/ contact/ footer/
     assistant/         "Talk to SSLC" — frontend-only project assistant (no fake AI)
@@ -56,9 +56,7 @@ Everything below is wired to render automatically once filled in `src/content/si
 
 The three "Solution blueprint" cards describe how SSLC builds each class of system; they are not client work.
 
-## 3D hero
+## Hero globe
 
-`components/hero/hero-scene.tsx` rebuilds the SSLC mark in three.js (extruded ribbons, bloom, particles,
-orbit rings). three.js loads only after the page is idle on desktop, or on the first touch/scroll on
-phones; a static mark is shown until then and for browsers without WebGL. Reduced-motion users get a
-still frame.
+`components/hero/globe.tsx` draws the glowing particle globe on a 2D canvas (no 3D library). It pauses
+off-screen and in background tabs; reduced-motion users get a still frame.

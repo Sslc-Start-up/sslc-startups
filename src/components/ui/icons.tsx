@@ -131,6 +131,39 @@ export const InfinityLoop = (p: IconProps) => (
     <path d="M12 12c-2-2.7-3.6-4-5.5-4a4 4 0 0 0 0 8c1.9 0 3.5-1.3 5.5-4Zm0 0c2 2.7 3.6 4 5.5 4a4 4 0 0 0 0-8c-1.9 0-3.5 1.3-5.5 4Z" />
   </svg>
 );
+export const Code = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16" />
+  </svg>
+);
+export const Cube = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="m12 2.5 8.5 4.75v9.5L12 21.5l-8.5-4.75v-9.5L12 2.5Z" />
+    <path d="m3.5 7.25 8.5 4.75 8.5-4.75M12 12v9.5" />
+  </svg>
+);
+export const Bot = (p: IconProps) => (
+  <svg {...base(p)}>
+    <rect x="4" y="7.5" width="16" height="12" rx="3" />
+    <path d="M12 7.5V4M9 13h.01M15 13h.01M9.5 16.5h5M2 12.5v3M22 12.5v3" />
+    <circle cx="12" cy="3.5" r="1" />
+  </svg>
+);
+export const Palette = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.9 1.5-1.9l-.4-1.2c-.4-1.2.5-2.4 1.8-2.4H17a4 4 0 0 0 4-4C21 6.6 17 3 12 3Z" />
+    <circle cx="7.5" cy="11" r="1" />
+    <circle cx="10" cy="7" r="1" />
+    <circle cx="15" cy="7.5" r="1" />
+  </svg>
+);
+export const Gauge = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M4.5 18a9 9 0 1 1 15 0" />
+    <path d="m12 14 4-5" />
+    <circle cx="12" cy="14" r="1.5" />
+  </svg>
+);
 export const Close = (p: IconProps) => (
   <svg {...base(p)}>
     <path d="M6 6l12 12M18 6 6 18" />

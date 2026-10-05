@@ -7,14 +7,14 @@ type Size = "md" | "lg";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-fg text-bg hover:opacity-85",
-  secondary: "border border-fg/25 bg-transparent text-fg hover:border-fg hover:bg-fg/5",
+    "bg-fg text-bg shadow-[0_8px_30px_-8px_rgb(168_116_255/0.55)] hover:opacity-90",
+  secondary: "border border-violet/50 bg-violet/5 text-fg hover:border-violet hover:bg-violet/15",
   ghost: "text-muted hover:text-fg",
 };
 
 const sizes: Record<Size, string> = {
-  md: "h-10 px-5 text-[12.5px] gap-2 rounded-[3px] uppercase tracking-[0.06em]",
-  lg: "h-14 px-8 text-[13.5px] gap-2.5 rounded-[3px] uppercase tracking-[0.06em]",
+  md: "h-10 px-5 text-[14px] gap-2 rounded-lg",
+  lg: "h-12 px-6 text-[15px] gap-2.5 rounded-lg",
 };
 
 export function buttonClass(variant: Variant = "primary", size: Size = "md", className?: string) {

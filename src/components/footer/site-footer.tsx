@@ -52,7 +52,7 @@ export function SiteFooter() {
             <ul className="mt-5 space-y-3">
               {solutionLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={`#service-${l.id}`} className={linkClass}>
+                  <a href="#services" className={linkClass}>
                     {l.label}
                   </a>
                 </li>

@@ -10,8 +10,8 @@ function subscribe(onChange: () => void) {
   mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
   return () => mo.disconnect();
 }
-const getTheme = (): Theme => (document.documentElement.dataset.theme === "dark" ? "dark" : "light");
-const getServerTheme = (): Theme => "light";
+const getTheme = (): Theme => (document.documentElement.dataset.theme === "light" ? "light" : "dark");
+const getServerTheme = (): Theme => "dark";
 
 /** Current theme, kept in sync with <html data-theme>. */
 export function useTheme() {

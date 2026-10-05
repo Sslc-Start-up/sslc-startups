@@ -1,5 +1,4 @@
 import { caseStudies, type CaseStudy } from "@/content/site";
-import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { TiltCard } from "@/components/ui/tilt-card";
 import { InquiryLink } from "@/components/ui/inquiry-link";
@@ -61,20 +60,18 @@ export function WorkSection() {
         <div className="aurora [animation-duration:32s]" />
       </div>
       <div className="container-x relative">
-        <div className="flex flex-col items-center gap-8 text-center">
-          <SectionHeading
-            id="work-title"
-            index="05"
-            label="What we build"
-            align="center"
-            title={
-              <>
-                We build real systems. <br className="hidden md:block" />
-                <span className="text-brand">Not just pretty interfaces.</span>
-              </>
-            }
-            intro="Three of the systems we're built to deliver — each one engineered end to end, from data model to device."
-          />
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <Reveal>
+            <p className="inline-flex items-center gap-2.5 rounded-full border border-line-strong bg-surface-2/60 px-3.5 py-1.5 font-mono text-[11px] tracking-[0.2em] text-fg/80 uppercase">
+              <span className="size-2 rounded-full bg-violet" /> Featured work
+            </p>
+            <h2 id="work-title" className="mt-5 text-[clamp(2rem,1.3rem+2.2vw,3rem)] leading-[1.08] font-bold tracking-[-0.03em] text-fg">
+              Real systems. Real <span className="text-brand">impact.</span>
+            </h2>
+            <p className="mt-3 max-w-2xl text-[16px] text-muted">
+              From startups to growing businesses — solution blueprints for the systems we design and engineer end to end.
+            </p>
+          </Reveal>
           <Reveal>
             <InquiryLink variant="secondary" size="md">
               Discuss your project <ArrowRight size={15} />
