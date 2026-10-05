@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Caveat, Geist, Geist_Mono } from "next/font/google";
 import { company, seo } from "@/content/site";
 import { siteUrl } from "@/lib/site-url";
+import { Analytics } from "@vercel/analytics/next";
 import { MotionProvider } from "@/components/layout/motion-provider";
 import "./globals.css";
 
@@ -75,6 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <MotionProvider>{children}</MotionProvider>
+        <Analytics />
         <div aria-hidden className="grain" />
         <script
           type="application/ld+json"
