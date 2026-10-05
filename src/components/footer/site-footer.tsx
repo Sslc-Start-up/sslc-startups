@@ -45,6 +45,10 @@ export function SiteFooter() {
               <span className="text-muted">{company.footerLine[1]}</span>
             </p>
             <Tagline className="mt-5 text-sm sm:text-sm" />
+            <p className="mt-5 max-w-sm text-[13.5px] leading-relaxed text-muted">
+              {company.name} is a software development company building AI agents, SaaS platforms, web applications,
+              iOS &amp; Android apps, CRM/ERP systems and cloud infrastructure for startups and growing businesses.
+            </p>
           </div>
 
           <nav aria-label="Solutions">

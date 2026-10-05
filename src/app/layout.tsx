@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Caveat, Geist, Geist_Mono } from "next/font/google";
-import { company, seo } from "@/content/site";
+import { company, faqs, seo, services } from "@/content/site";
 import { siteUrl } from "@/lib/site-url";
 import { Analytics } from "@vercel/analytics/next";
 import { MotionProvider } from "@/components/layout/motion-provider";
@@ -13,23 +13,40 @@ const hand = Caveat({ subsets: ["latin"], variable: "--font-hand", display: "swa
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: seo.title,
+  title: { default: seo.title, template: `%s | ${company.name}` },
   description: seo.description,
   applicationName: company.name,
+  keywords: seo.keywords,
+  authors: [{ name: company.name, url: siteUrl }],
+  creator: company.name,
+  publisher: company.name,
+  category: "technology",
   alternates: { canonical: "/" },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
   openGraph: {
     type: "website",
     url: "/",
     siteName: company.name,
     title: seo.title,
     description: seo.description,
-    locale: "en_US",
+    locale: "en_IN",
   },
   twitter: {
     card: "summary_large_image",
     title: seo.title,
     description: seo.description,
+  },
+  formatDetection: { telephone: true, email: true },
+  // Paste the code from Google Search Console / Bing Webmaster here (or set the env vars).
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : undefined,
   },
 };
 
@@ -38,25 +55,61 @@ export const viewport: Viewport = {
   colorScheme: "dark light",
 };
 
+/** Structured data: WebSite (site name in Google), Organization (logo, contacts), services, FAQ. */
+const orgId = `${siteUrl}/#organization`;
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: company.name,
-  url: siteUrl,
-  logo: `${siteUrl}/icon.png`,
-  description: seo.description,
-  email: company.email,
-  telephone: company.phoneHref.replace("tel:", ""),
-  knowsAbout: [
-    "Software product engineering",
-    "AI development",
-    "SaaS development",
-    "Web application development",
-    "Mobile app development",
-    "CRM and ERP systems",
-    "Cloud and DevOps",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: `${siteUrl}/`,
+      name: company.name,
+      alternateName: seo.alternateNames,
+      publisher: { "@id": orgId },
+      inLanguage: "en",
+    },
+    {
+      "@type": "Organization",
+      "@id": orgId,
+      name: company.name,
+      alternateName: seo.alternateNames,
+      url: `${siteUrl}/`,
+      logo: { "@type": "ImageObject", url: `${siteUrl}/icon.png`, width: 512, height: 512 },
+      image: `${siteUrl}/opengraph-image.png`,
+      description: seo.description,
+      email: company.email,
+      telephone: company.phoneHref.replace("tel:", ""),
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          contactType: "sales",
+          email: company.email,
+          telephone: company.phoneHref.replace("tel:", ""),
+          availableLanguage: ["English", "Hindi"],
+        },
+      ],
+      knowsAbout: services.map((s) => s.name),
+      sameAs: company.social.map((s) => s.href).filter(Boolean),
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Software development services",
+        itemListElement: services.map((s) => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: s.name, description: s.outcome, provider: { "@id": orgId } },
+        })),
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${siteUrl}/#faq`,
+      mainEntity: faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    },
   ],
-  sameAs: company.social.map((s) => s.href).filter(Boolean),
 };
 
 const themeScript = `try{var t=localStorage.getItem("sslc-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;}catch(e){}`;

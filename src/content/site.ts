@@ -25,9 +25,33 @@ export const company = {
 } as const;
 
 export const seo = {
-  title: "SSLC Startup | Software Product Engineering & AI Development",
+  title: "SSLC Startup | Software Development, AI & App Development Company",
   description:
-    "SSLC Startup builds AI-powered software, SaaS platforms, web and mobile applications, enterprise systems and scalable digital products.",
+    "SSLC Startup (SSLC) is a software development company building AI agents, SaaS platforms, web apps, iOS & Android apps, CRM/ERP systems and cloud solutions for startups and businesses. Free consultation.",
+  /** Brand spellings people search for — used for site name & structured data. */
+  alternateNames: ["SSLC", "SSLC Startup", "SSLC Start-up", "sslctstartup", "SSLC Startups"],
+  keywords: [
+    "SSLC Startup",
+    "SSLC",
+    "software development company",
+    "custom software development",
+    "AI development company",
+    "AI agents development",
+    "AI chatbot development",
+    "SaaS development",
+    "web application development",
+    "website development company",
+    "mobile app development",
+    "iOS and Android app development",
+    "React Native app development",
+    "CRM development",
+    "ERP software development",
+    "business automation",
+    "Next.js development",
+    "Django development",
+    "cloud and DevOps services",
+    "software company India",
+  ],
 };
 
 export const nav = [
