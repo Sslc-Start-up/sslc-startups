@@ -18,7 +18,7 @@ export const company = {
   footerLine: ["Build better software.", "Build better businesses."],
   /** Add real profile URLs here; empty entries are not rendered. */
   social: [
-    { label: "LinkedIn", href: "" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/sslc-starup/" },
     { label: "Instagram", href: "" },
     { label: "GitHub", href: "" },
   ],
@@ -55,10 +55,10 @@ export const seo = {
 };
 
 export const nav = [
-  { label: "Work", href: "#work" },
-  { label: "Services", href: "#services" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/#work" },
+  { label: "Services", href: "/#services" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Contact", href: "/#contact" },
 ] as const;
 
 export type ProjectType =

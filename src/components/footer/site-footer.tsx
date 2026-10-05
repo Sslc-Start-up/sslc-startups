@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { company, services } from "@/content/site";
 import { Tagline } from "@/components/hero/tagline";
 
@@ -13,11 +14,11 @@ const solutionLinks = [
 ].filter((l) => services.some((s) => s.id === l.id));
 
 const companyLinks = [
-  { label: "FAQ", href: "#faq" },
-  { label: "Work", href: "#work" },
-  { label: "Why SSLC", href: "#diff-title" },
-  { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/#work" },
+  { label: "Services", href: "/#services" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Contact", href: "/#contact" },
+  { label: "Privacy Policy", href: "/privacy" },
 ];
 
 const linkClass = "text-[14px] text-muted transition-colors duration-300 hover:text-fg";
@@ -31,14 +32,14 @@ export function SiteFooter() {
       <div className="container-x relative pt-20 pb-10 lg:pt-28">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,1.3fr)_repeat(3,minmax(0,1fr))]">
           <div>
-            <a href="#" className="inline-flex items-center gap-3">
+            <Link href="/" className="inline-flex items-center gap-3">
               <Image src="/brand/sslc-mark.png" alt="" width={40} height={40} className="size-10" />
               <span className="flex flex-col leading-none">
                 <span className="text-[17px] font-semibold tracking-[0.04em] text-fg">SSLC</span>
                 <span className="mt-1 font-mono text-[10px] tracking-[0.42em] text-brand">STARTUP</span>
               </span>
-              <span className="sr-only">— back to top</span>
-            </a>
+              <span className="sr-only">— home</span>
+            </Link>
             <p className="mt-6 max-w-sm text-title font-medium text-fg">
               {company.footerLine[0]}
               <br />
@@ -56,9 +57,9 @@ export function SiteFooter() {
             <ul className="mt-5 space-y-3">
               {solutionLinks.map((l) => (
                 <li key={l.label}>
-                  <a href="#services" className={linkClass}>
+                  <Link href="/#services" className={linkClass}>
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -109,7 +110,12 @@ export function SiteFooter() {
         </p>
 
         <div className="mt-10 flex flex-col gap-3 border-t border-line pt-8 text-[13px] text-subtle sm:flex-row sm:items-center sm:justify-between">
-          <p>© {year} {company.name}. All rights reserved.</p>
+          <p>
+            © {year} {company.name}. All rights reserved. ·{" "}
+            <a href="/privacy" className="underline-offset-4 hover:text-fg hover:underline">
+              Privacy Policy
+            </a>
+          </p>
           <p className="font-mono text-[11px] tracking-[0.16em] uppercase">Software product engineering</p>
         </div>
       </div>
