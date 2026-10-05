@@ -1,22 +1,20 @@
 import type { ComponentType } from "react";
 import { caseStudies } from "@/content/site";
-import { Reveal } from "@/components/ui/reveal";
+import { Reveal, RevealItem } from "@/components/ui/reveal";
 import { InquiryLink } from "@/components/ui/inquiry-link";
 import { ArrowUpRight } from "@/components/ui/icons";
 import { ChatMock, DashboardMock, PhoneMock } from "@/components/mockups/mockups";
 
 type Mock = ComponentType<{ className?: string }>;
 
-/** Aligns the strip with the page container while letting it bleed to the right edge. */
-const GUTTER = "max(1.25rem, calc((100vw - 1280px) / 2 + 3rem))";
-
 const panels: { id: string; mock: Mock; bg: string; mockClass: string }[] = [
-  { id: "ai-support-agent", mock: ChatMock, bg: "bg-[#0e0b26]", mockClass: "w-[70%] max-w-[380px]" },
-  { id: "multi-tenant-saas", mock: DashboardMock, bg: "bg-[#eef0f6]", mockClass: "w-[88%] max-w-[560px]" },
-  { id: "realtime-mobile", mock: PhoneMock, bg: "bg-[#1a0f2e]", mockClass: "w-[38%] max-w-[200px]" },
+  // Mock-ups render at a fixed natural width and are scaled down, so they never crop.
+  { id: "ai-support-agent", mock: ChatMock, bg: "bg-[#0e0b26]", mockClass: "w-[340px] scale-[0.82]" },
+  { id: "multi-tenant-saas", mock: DashboardMock, bg: "bg-[#e9ebf3]", mockClass: "w-[460px] scale-[0.66]" },
+  { id: "realtime-mobile", mock: PhoneMock, bg: "bg-[#1a0f2e]", mockClass: "w-[190px] scale-[0.68]" },
 ];
 
-/** "Our Work" strip — large product panels with the blueprint underneath. */
+/** "Our Work" — three product panels in a responsive grid (no horizontal scrolling). */
 export function OurWork() {
   return (
     <section id="work" aria-labelledby="work-title" className="bg-bg py-20 lg:py-28">
@@ -34,31 +32,30 @@ export function OurWork() {
             Discuss Your Project <ArrowUpRight size={15} />
           </InquiryLink>
         </Reveal>
-      </div>
 
-      <div
-        className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [scrollbar-width:thin]"
-        style={{ paddingInline: GUTTER, scrollPaddingInline: GUTTER }}
-      >
-        {panels.map(({ id, mock: M, bg, mockClass }) => {
-          const study = caseStudies.find((c) => c.id === id);
-          if (!study) return null;
-          return (
-            <article key={id} className="w-[86vw] max-w-[620px] shrink-0 snap-start sm:w-[60vw] lg:w-[42vw]">
-              <div className={`grid aspect-[16/10] place-items-center overflow-hidden ${bg}`}>
-                <M className={mockClass} />
-              </div>
-              <div className="mt-5 flex items-start justify-between gap-6">
-                <div>
-                  <h3 className="font-display text-[19px] font-medium text-fg">{study.name}</h3>
-                  <p className="mt-1.5 text-[15px] text-muted">{study.summary}</p>
+        <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {panels.map(({ id, mock: M, bg, mockClass }, i) => {
+            const study = caseStudies.find((c) => c.id === id);
+            if (!study) return null;
+            return (
+              <RevealItem key={id} delay={i * 0.08} className="group flex min-w-0 flex-col">
+                <div className={`relative aspect-[4/3] min-w-0 overflow-hidden border border-line ${bg}`}>
+                  <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${mockClass}`}>
+                    <div className="transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:-translate-y-2">
+                      <M />
+                    </div>
+                  </div>
                 </div>
-                <span className="shrink-0 font-mono text-[11px] tracking-[0.14em] text-subtle uppercase">Blueprint</span>
-              </div>
-              <p className="mt-3 text-[13.5px] text-subtle">{study.technology.join(" · ")}</p>
-            </article>
-          );
-        })}
+                <div className="mt-5 flex items-start justify-between gap-4">
+                  <h3 className="font-display text-[18px] font-medium text-fg">{study.name}</h3>
+                  <span className="mt-1 shrink-0 font-mono text-[10.5px] tracking-[0.14em] text-subtle uppercase">Blueprint</span>
+                </div>
+                <p className="mt-2 text-[15px] leading-relaxed text-muted">{study.summary}</p>
+                <p className="mt-3 text-[13.5px] text-subtle">{study.technology.join(" · ")}</p>
+              </RevealItem>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );
